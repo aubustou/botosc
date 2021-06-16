@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from botosc.mixin import VmMixin
 
 
 @dataclass
@@ -1318,7 +1317,7 @@ class VirtualGateway:
 
 
 @dataclass
-class Vm(VmMixin):
+class Vm:
     architecture: str
     block_device_mappings: list['BlockDeviceMappingCreated']
     bsu_optimized: bool
