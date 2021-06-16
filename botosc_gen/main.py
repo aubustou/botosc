@@ -90,8 +90,11 @@ def create_connector(api_content: dict, entries: dict) -> list[tuple[str, str, s
         response = obj["post"]["responses"]["200"]["content"]["application/json"][
             "schema"
         ]["$ref"].rsplit("/", 1)[-1]
+        response_obj = entries.get(response)
+        if not(response_obj and [x for x in field(response_obj) if x.name != "ResponseContext"]):
+            response_obj = None
 
-        calls.append((name.strip("/"), entries.get(args), entries.get(response)))
+        calls.append((name.strip("/"), entries.get(args), response_obj))
 
     return calls
 
