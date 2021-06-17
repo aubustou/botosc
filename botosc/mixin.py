@@ -1,4 +1,9 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+
+
+@dataclass
+class ResponseParameter:
+    _all_optional: bool = field(default=True, init=False)
 
 
 @dataclass
