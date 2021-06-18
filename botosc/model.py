@@ -1,6 +1,14 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
+from typing import Optional
+
+from apischema.aliases import alias
+
+from .utils import to_camelcase
 
 
+@alias(to_camelcase)
 @dataclass
 class AccepterNet:
     account_id: str
@@ -8,15 +16,17 @@ class AccepterNet:
     net_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class AccessKey:
     access_key_id: str
     creation_date: str
-    expiration_date: str
     last_modification_date: str
     state: str
+    expiration_date: Optional[str] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class AccessKeySecretKey:
     access_key_id: str
@@ -27,6 +37,7 @@ class AccessKeySecretKey:
     state: str
 
 
+@alias(to_camelcase)
 @dataclass
 class AccessLog:
     is_enabled: bool
@@ -35,24 +46,34 @@ class AccessLog:
     publication_interval: int
 
 
+@alias(to_camelcase)
 @dataclass
 class Account:
     account_id: str
+    additional_emails: list[str]
     city: str
     company_name: str
     country: str
-    customer_id: str
     email: str
     first_name: str
-    job_title: str
     last_name: str
-    mobile_number: str
-    phone_number: str
-    state_province: str
-    vat_number: str
     zip_code: str
+    customer_id: Optional[str] = None
+    job_title: Optional[str] = None
+    mobile_number: Optional[str] = None
+    phone_number: Optional[str] = None
+    state_province: Optional[str] = None
+    vat_number: Optional[str] = None
 
 
+@alias(to_camelcase)
+@dataclass
+class ApiAccessPolicy:
+    max_access_key_expiration_seconds: int
+    require_trusted_env: bool
+
+
+@alias(to_camelcase)
 @dataclass
 class ApiAccessRule:
     api_access_rule_id: str
@@ -62,12 +83,14 @@ class ApiAccessRule:
     ip_ranges: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class ApplicationStickyCookiePolicy:
     cookie_name: str
     policy_name: str
 
 
+@alias(to_camelcase)
 @dataclass
 class BackendVmHealth:
     description: str
@@ -76,35 +99,40 @@ class BackendVmHealth:
     vm_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class BlockDeviceMappingCreated:
-    bsu: "BsuCreated"
+    bsu: BsuCreated
     device_name: str
 
 
+@alias(to_camelcase)
 @dataclass
 class BlockDeviceMappingImage:
-    bsu: "BsuToCreate"
+    bsu: BsuToCreate
     device_name: str
-    virtual_device_name: str
+    virtual_device_name: Optional[str] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class BlockDeviceMappingVmCreation:
-    bsu: "BsuToCreate"
+    bsu: BsuToCreate
     device_name: str
     no_device: str
     virtual_device_name: str
 
 
+@alias(to_camelcase)
 @dataclass
 class BlockDeviceMappingVmUpdate:
-    bsu: "BsuToUpdateVm"
+    bsu: BsuToUpdateVm
     device_name: str
     no_device: str
     virtual_device_name: str
 
 
+@alias(to_camelcase)
 @dataclass
 class BsuCreated:
     delete_on_vm_deletion: bool
@@ -113,21 +141,24 @@ class BsuCreated:
     volume_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class BsuToCreate:
     delete_on_vm_deletion: bool
-    iops: int
     snapshot_id: str
     volume_size: int
     volume_type: str
+    iops: Optional[int] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class BsuToUpdateVm:
     delete_on_vm_deletion: bool
     volume_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class Ca:
     ca_fingerprint: str
@@ -135,6 +166,26 @@ class Ca:
     description: str
 
 
+@alias(to_camelcase)
+@dataclass
+class Catalog:
+    entries: list[CatalogEntry]
+
+
+@alias(to_camelcase)
+@dataclass
+class CatalogEntry:
+    category: str
+    operation: str
+    service: str
+    subregion_name: str
+    title: str
+    type: str
+    unit_price: float
+    flags: Optional[str] = None
+
+
+@alias(to_camelcase)
 @dataclass
 class ClientGateway:
     bgp_asn: int
@@ -142,9 +193,10 @@ class ClientGateway:
     connection_type: str
     public_ip: str
     state: str
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
 
 
+@alias(to_camelcase)
 @dataclass
 class ConsumptionEntry:
     account_id: str
@@ -160,16 +212,18 @@ class ConsumptionEntry:
     value: int
 
 
+@alias(to_camelcase)
 @dataclass
 class DhcpOptionsSet:
     default: bool
     dhcp_options_set_id: str
     domain_name: str
     domain_name_servers: list[str]
-    ntp_servers: list[str]
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
+    ntp_servers: Optional[list[str]] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class DirectLink:
     account_id: str
@@ -181,6 +235,7 @@ class DirectLink:
     state: str
 
 
+@alias(to_camelcase)
 @dataclass
 class DirectLinkInterface:
     bgp_asn: int
@@ -192,6 +247,7 @@ class DirectLinkInterface:
     vlan: int
 
 
+@alias(to_camelcase)
 @dataclass
 class DirectLinkInterfaces:
     account_id: str
@@ -209,6 +265,7 @@ class DirectLinkInterfaces:
     vlan: int
 
 
+@alias(to_camelcase)
 @dataclass
 class Errors:
     code: str
@@ -216,12 +273,14 @@ class Errors:
     type: str
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersAccessKeys:
     access_key_ids: list[str]
     states: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersApiAccessRule:
     api_access_rule_ids: list[str]
@@ -231,6 +290,7 @@ class FiltersApiAccessRule:
     ip_ranges: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersApiLog:
     query_access_keys: list[str]
@@ -244,6 +304,7 @@ class FiltersApiLog:
     response_status_codes: list[int]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersCa:
     ca_fingerprints: list[str]
@@ -251,6 +312,7 @@ class FiltersCa:
     descriptions: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersClientGateway:
     bgp_asns: list[int]
@@ -263,6 +325,7 @@ class FiltersClientGateway:
     tags: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersDhcpOptions:
     default: bool
@@ -275,22 +338,26 @@ class FiltersDhcpOptions:
     tags: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersDirectLink:
     direct_link_ids: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersDirectLinkInterface:
     direct_link_ids: list[str]
     direct_link_interface_ids: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersExportTask:
     task_ids: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersFlexibleGpu:
     delete_on_vm_deletion: bool
@@ -302,6 +369,7 @@ class FiltersFlexibleGpu:
     vm_ids: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersImage:
     account_aliases: list[str]
@@ -329,6 +397,7 @@ class FiltersImage:
     virtualization_types: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersInternetService:
     internet_service_ids: list[str]
@@ -339,22 +408,26 @@ class FiltersInternetService:
     tags: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersKeypair:
     keypair_fingerprints: list[str]
     keypair_names: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersListenerRule:
     listener_rule_names: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersLoadBalancer:
     load_balancer_names: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersNatService:
     nat_service_ids: list[str]
@@ -366,6 +439,7 @@ class FiltersNatService:
     tags: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersNet:
     dhcp_options_set_ids: list[str]
@@ -378,6 +452,7 @@ class FiltersNet:
     tags: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersNetAccessPoint:
     net_access_point_ids: list[str]
@@ -389,6 +464,7 @@ class FiltersNetAccessPoint:
     tags: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersNetPeering:
     accepter_net_account_ids: list[str]
@@ -405,6 +481,7 @@ class FiltersNetPeering:
     tags: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersNic:
     descriptions: list[str]
@@ -437,11 +514,13 @@ class FiltersNic:
     tags: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersProductType:
     product_type_ids: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersPublicIp:
     link_public_ip_ids: list[str]
@@ -457,6 +536,7 @@ class FiltersPublicIp:
     vm_ids: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersQuota:
     collections: list[str]
@@ -465,6 +545,7 @@ class FiltersQuota:
     short_descriptions: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersRouteTable:
     link_route_table_ids: list[str]
@@ -486,6 +567,7 @@ class FiltersRouteTable:
     tags: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersSecurityGroup:
     account_ids: list[str]
@@ -512,17 +594,20 @@ class FiltersSecurityGroup:
     tags: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersServerCertificate:
     paths: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersService:
     service_ids: list[str]
     service_names: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersSnapshot:
     account_aliases: list[str]
@@ -540,6 +625,7 @@ class FiltersSnapshot:
     volume_sizes: list[int]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersSubnet:
     available_ips_counts: list[int]
@@ -553,11 +639,13 @@ class FiltersSubnet:
     tags: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersSubregion:
     subregion_names: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersTag:
     keys: list[str]
@@ -566,6 +654,7 @@ class FiltersTag:
     values: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersVirtualGateway:
     connection_types: list[str]
@@ -578,6 +667,7 @@ class FiltersVirtualGateway:
     virtual_gateway_ids: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersVm:
     tag_keys: list[str]
@@ -586,6 +676,7 @@ class FiltersVm:
     vm_ids: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersVmType:
     bsu_optimized: bool
@@ -596,6 +687,7 @@ class FiltersVmType:
     volume_sizes: list[int]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersVmsState:
     maintenance_event_codes: list[str]
@@ -607,6 +699,7 @@ class FiltersVmsState:
     vm_states: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersVolume:
     creation_dates: list[str]
@@ -626,6 +719,7 @@ class FiltersVolume:
     volume_types: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FiltersVpnConnection:
     bgp_asns: list[int]
@@ -641,6 +735,7 @@ class FiltersVpnConnection:
     vpn_connection_ids: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class FlexibleGpu:
     delete_on_vm_deletion: bool
@@ -649,9 +744,10 @@ class FlexibleGpu:
     model_name: str
     state: str
     subregion_name: str
-    vm_id: str
+    vm_id: Optional[str] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class FlexibleGpuCatalog:
     generations: list[str]
@@ -661,6 +757,7 @@ class FlexibleGpuCatalog:
     v_ram: int
 
 
+@alias(to_camelcase)
 @dataclass
 class HealthCheck:
     check_interval: int
@@ -672,52 +769,57 @@ class HealthCheck:
     unhealthy_threshold: int
 
 
+@alias(to_camelcase)
 @dataclass
 class Image:
-    account_alias: str
     account_id: str
     architecture: str
-    block_device_mappings: list['BlockDeviceMappingImage']
+    block_device_mappings: list[BlockDeviceMappingImage]
     creation_date: str
     description: str
     file_location: str
     image_id: str
     image_name: str
     image_type: str
-    permissions_to_launch: "PermissionsOnResource"
+    permissions_to_launch: PermissionsOnResource
     product_codes: list[str]
     root_device_name: str
     root_device_type: str
     state: str
-    state_comment: "StateComment"
-    tags: list['ResourceTag']
+    state_comment: StateComment
+    tags: list[ResourceTag]
+    account_alias: Optional[str] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class ImageExportTask:
     comment: str
     image_id: str
-    osu_export: "OsuExportImageExportTask"
+    osu_export: OsuExportImageExportTask
     progress: int
     state: str
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
     task_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class InternetService:
     internet_service_id: str
     net_id: str
     state: str
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
 
 
+@alias(to_camelcase)
 @dataclass
 class Keypair:
     keypair_fingerprint: str
     keypair_name: str
 
 
+@alias(to_camelcase)
 @dataclass
 class KeypairCreated:
     keypair_fingerprint: str
@@ -725,6 +827,7 @@ class KeypairCreated:
     private_key: str
 
 
+@alias(to_camelcase)
 @dataclass
 class LinkNic:
     delete_on_vm_deletion: bool
@@ -735,6 +838,7 @@ class LinkNic:
     vm_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class LinkNicLight:
     delete_on_vm_deletion: bool
@@ -743,12 +847,14 @@ class LinkNicLight:
     state: str
 
 
+@alias(to_camelcase)
 @dataclass
 class LinkNicToUpdate:
     delete_on_vm_deletion: bool
     link_nic_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class LinkPublicIp:
     link_public_ip_id: str
@@ -758,6 +864,7 @@ class LinkPublicIp:
     public_ip_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class LinkPublicIpLightForVm:
     public_dns_name: str
@@ -765,14 +872,16 @@ class LinkPublicIpLightForVm:
     public_ip_account_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class LinkRouteTable:
     link_route_table_id: str
     main: bool
     route_table_id: str
-    subnet_id: str
+    subnet_id: Optional[str] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class LinkedVolume:
     delete_on_vm_deletion: bool
@@ -782,6 +891,7 @@ class LinkedVolume:
     volume_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class Listener:
     backend_port: int
@@ -792,6 +902,7 @@ class Listener:
     server_certificate_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class ListenerForCreation:
     backend_port: int
@@ -801,6 +912,7 @@ class ListenerForCreation:
     server_certificate_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class ListenerRule:
     action: str
@@ -813,6 +925,7 @@ class ListenerRule:
     vm_ids: list[str]
 
 
+@alias(to_camelcase)
 @dataclass
 class ListenerRuleForCreation:
     action: str
@@ -822,36 +935,43 @@ class ListenerRuleForCreation:
     priority: int
 
 
+@alias(to_camelcase)
 @dataclass
 class LoadBalancer:
-    access_log: "AccessLog"
-    application_sticky_cookie_policies: list['ApplicationStickyCookiePolicy']
+    access_log: AccessLog
+    application_sticky_cookie_policies: list[ApplicationStickyCookiePolicy]
+    backend_ips: list[str]
     backend_vm_ids: list[str]
     dns_name: str
-    health_check: "HealthCheck"
-    listeners: list['Listener']
+    health_check: HealthCheck
+    listeners: list[Listener]
     load_balancer_name: str
-    load_balancer_sticky_cookie_policies: list['LoadBalancerStickyCookiePolicy']
+    load_balancer_sticky_cookie_policies: list[LoadBalancerStickyCookiePolicy]
     load_balancer_type: str
     net_id: str
+    public_ip: str
     security_groups: list[str]
-    source_security_group: "SourceSecurityGroup"
+    source_security_group: SourceSecurityGroup
     subnets: list[str]
     subregion_names: list[str]
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
 
 
+@alias(to_camelcase)
 @dataclass
 class LoadBalancerLight:
     load_balancer_name: str
     load_balancer_port: int
 
 
+@alias(to_camelcase)
 @dataclass
 class LoadBalancerStickyCookiePolicy:
+    cookie_expiration_period: int
     policy_name: str
 
 
+@alias(to_camelcase)
 @dataclass
 class LoadBalancerTag:
     key: str
@@ -859,12 +979,14 @@ class LoadBalancerTag:
     value: str
 
 
+@alias(to_camelcase)
 @dataclass
 class Location:
     code: str
     name: str
 
 
+@alias(to_camelcase)
 @dataclass
 class Log:
     account_id: str
@@ -885,6 +1007,7 @@ class Log:
     response_status_code: int
 
 
+@alias(to_camelcase)
 @dataclass
 class MaintenanceEvent:
     code: str
@@ -893,26 +1016,29 @@ class MaintenanceEvent:
     not_before: str
 
 
+@alias(to_camelcase)
 @dataclass
 class NatService:
     nat_service_id: str
     net_id: str
-    public_ips: list['PublicIpLight']
+    public_ips: list[PublicIpLight]
     state: str
     subnet_id: str
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
 
 
+@alias(to_camelcase)
 @dataclass
 class Net:
     dhcp_options_set_id: str
     ip_range: str
     net_id: str
     state: str
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
     tenancy: str
 
 
+@alias(to_camelcase)
 @dataclass
 class NetAccessPoint:
     net_access_point_id: str
@@ -920,84 +1046,92 @@ class NetAccessPoint:
     route_table_ids: list[str]
     service_name: str
     state: str
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
 
 
+@alias(to_camelcase)
 @dataclass
 class NetPeering:
-    accepter_net: "AccepterNet"
+    accepter_net: AccepterNet
     net_peering_id: str
-    source_net: "SourceNet"
-    state: "NetPeeringState"
-    tags: list['ResourceTag']
+    source_net: SourceNet
+    state: NetPeeringState
+    tags: list[ResourceTag]
 
 
+@alias(to_camelcase)
 @dataclass
 class NetPeeringState:
     message: str
     name: str
 
 
+@alias(to_camelcase)
 @dataclass
 class NetToVirtualGatewayLink:
     net_id: str
     state: str
 
 
+@alias(to_camelcase)
 @dataclass
 class Nic:
     account_id: str
     description: str
     is_source_dest_checked: bool
-    link_nic: "LinkNic"
-    link_public_ip: "LinkPublicIp"
+    link_nic: LinkNic
     mac_address: str
     net_id: str
     nic_id: str
     private_dns_name: str
-    private_ips: list['PrivateIp']
-    security_groups: list['SecurityGroupLight']
+    private_ips: list[PrivateIp]
+    security_groups: list[SecurityGroupLight]
     state: str
     subnet_id: str
     subregion_name: str
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
+    link_public_ip: Optional[LinkPublicIp] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class NicForVmCreation:
     delete_on_vm_deletion: bool
     description: str
     device_number: int
     nic_id: str
-    private_ips: list['PrivateIpLight']
+    private_ips: list[PrivateIpLight]
     secondary_private_ip_count: int
     security_group_ids: list[str]
     subnet_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class NicLight:
     account_id: str
     description: str
     is_source_dest_checked: bool
-    link_nic: "LinkNicLight"
-    link_public_ip: "LinkPublicIpLightForVm"
+    link_nic: LinkNicLight
+    link_public_ip: LinkPublicIpLightForVm
     mac_address: str
     net_id: str
     nic_id: str
     private_dns_name: str
-    private_ips: list['PrivateIpLightForVm']
-    security_groups: list['SecurityGroupLight']
+    private_ips: list[PrivateIpLightForVm]
+    security_groups: list[SecurityGroupLight]
     state: str
     subnet_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class OsuApiKey:
     api_key_id: str
     secret_key: str
 
 
+@alias(to_camelcase)
 @dataclass
 class OsuExportImageExportTask:
     disk_image_format: str
@@ -1006,6 +1140,7 @@ class OsuExportImageExportTask:
     osu_prefix: str
 
 
+@alias(to_camelcase)
 @dataclass
 class OsuExportSnapshotExportTask:
     disk_image_format: str
@@ -1013,27 +1148,31 @@ class OsuExportSnapshotExportTask:
     osu_prefix: str
 
 
+@alias(to_camelcase)
 @dataclass
 class OsuExportToCreate:
     disk_image_format: str
-    osu_api_key: "OsuApiKey"
+    osu_api_key: OsuApiKey
     osu_bucket: str
     osu_manifest_url: str
     osu_prefix: str
 
 
+@alias(to_camelcase)
 @dataclass
 class PermissionsOnResource:
     account_ids: list[str]
     global_permission: bool
 
 
+@alias(to_camelcase)
 @dataclass
 class PermissionsOnResourceCreation:
-    additions: "PermissionsOnResource"
-    removals: "PermissionsOnResource"
+    additions: PermissionsOnResource
+    removals: PermissionsOnResource
 
 
+@alias(to_camelcase)
 @dataclass
 class Phase1Options:
     dpd_timeout_action: str
@@ -1047,6 +1186,7 @@ class Phase1Options:
     startup_action: str
 
 
+@alias(to_camelcase)
 @dataclass
 class Phase2Options:
     phase2_dh_group_numbers: list[int]
@@ -1056,59 +1196,67 @@ class Phase2Options:
     pre_shared_key: str
 
 
+@alias(to_camelcase)
 @dataclass
 class Placement:
     subregion_name: str
     tenancy: str
 
 
+@alias(to_camelcase)
 @dataclass
 class PrivateIp:
     is_primary: bool
-    link_public_ip: "LinkPublicIp"
     private_dns_name: str
     private_ip: str
+    link_public_ip: Optional[LinkPublicIp] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class PrivateIpLight:
     is_primary: bool
     private_ip: str
 
 
+@alias(to_camelcase)
 @dataclass
 class PrivateIpLightForVm:
     is_primary: bool
-    link_public_ip: "LinkPublicIpLightForVm"
+    link_public_ip: LinkPublicIpLightForVm
     private_dns_name: str
     private_ip: str
 
 
+@alias(to_camelcase)
 @dataclass
 class ProductType:
     description: str
     product_type_id: str
-    vendor: str
+    vendor: Optional[str] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class PublicIp:
-    link_public_ip_id: str
-    nic_account_id: str
-    nic_id: str
-    private_ip: str
     public_ip: str
     public_ip_id: str
-    tags: list['ResourceTag']
-    vm_id: str
+    tags: list[ResourceTag]
+    link_public_ip_id: Optional[str] = None
+    nic_account_id: Optional[str] = None
+    nic_id: Optional[str] = None
+    private_ip: Optional[str] = None
+    vm_id: Optional[str] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class PublicIpLight:
     public_ip: str
     public_ip_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class Quota:
     account_id: str
@@ -1120,49 +1268,56 @@ class Quota:
     used_value: int
 
 
+@alias(to_camelcase)
 @dataclass
 class QuotaTypes:
     quota_type: str
-    quotas: list['Quota']
+    quotas: list[Quota]
 
 
+@alias(to_camelcase)
 @dataclass
 class Region:
     endpoint: str
     region_name: str
 
 
+@alias(to_camelcase)
 @dataclass
 class ResourceLoadBalancerTag:
     key: str
 
 
+@alias(to_camelcase)
 @dataclass
 class ResourceTag:
     key: str
     value: str
 
 
+@alias(to_camelcase)
 @dataclass
 class ResponseContext:
     request_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class Route:
     creation_method: str
     destination_ip_range: str
-    destination_service_id: str
-    gateway_id: str
-    nat_service_id: str
-    net_access_point_id: str
-    net_peering_id: str
-    nic_id: str
     state: str
-    vm_account_id: str
-    vm_id: str
+    destination_service_id: Optional[str] = None
+    gateway_id: Optional[str] = None
+    nat_service_id: Optional[str] = None
+    net_access_point_id: Optional[str] = None
+    net_peering_id: Optional[str] = None
+    nic_id: Optional[str] = None
+    vm_account_id: Optional[str] = None
+    vm_id: Optional[str] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class RouteLight:
     destination_ip_range: str
@@ -1170,49 +1325,55 @@ class RouteLight:
     state: str
 
 
+@alias(to_camelcase)
 @dataclass
 class RoutePropagatingVirtualGateway:
     virtual_gateway_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class RouteTable:
-    link_route_tables: list['LinkRouteTable']
+    link_route_tables: list[LinkRouteTable]
     net_id: str
-    route_propagating_virtual_gateways: list['RoutePropagatingVirtualGateway']
+    route_propagating_virtual_gateways: list[RoutePropagatingVirtualGateway]
     route_table_id: str
-    routes: list['Route']
-    tags: list['ResourceTag']
+    routes: list[Route]
+    tags: list[ResourceTag]
 
 
+@alias(to_camelcase)
 @dataclass
 class SecurityGroup:
     account_id: str
     description: str
-    inbound_rules: list['SecurityGroupRule']
-    net_id: str
-    outbound_rules: list['SecurityGroupRule']
+    inbound_rules: list[SecurityGroupRule]
+    outbound_rules: list[SecurityGroupRule]
     security_group_id: str
     security_group_name: str
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
+    net_id: Optional[str] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class SecurityGroupLight:
     security_group_id: str
     security_group_name: str
 
 
+@alias(to_camelcase)
 @dataclass
 class SecurityGroupRule:
     from_port_range: int
     ip_protocol: str
-    ip_ranges: list[str]
-    security_groups_members: list['SecurityGroupsMember']
-    service_ids: list[str]
     to_port_range: int
+    ip_ranges: Optional[list[str]] = None
+    security_groups_members: Optional[list[SecurityGroupsMember]] = None
+    service_ids: Optional[list[str]] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class SecurityGroupsMember:
     account_id: str
@@ -1220,6 +1381,7 @@ class SecurityGroupsMember:
     security_group_name: str
 
 
+@alias(to_camelcase)
 @dataclass
 class ServerCertificate:
     expiration_date: str
@@ -1229,6 +1391,7 @@ class ServerCertificate:
     upload_date: str
 
 
+@alias(to_camelcase)
 @dataclass
 class Service:
     ip_ranges: list[str]
@@ -1236,31 +1399,35 @@ class Service:
     service_name: str
 
 
+@alias(to_camelcase)
 @dataclass
 class Snapshot:
-    account_alias: str
     account_id: str
+    creation_date: str
     description: str
-    permissions_to_create_volume: "PermissionsOnResource"
+    permissions_to_create_volume: PermissionsOnResource
     progress: int
     snapshot_id: str
     state: str
-    tags: list['ResourceTag']
-    volume_id: str
+    tags: list[ResourceTag]
     volume_size: int
+    account_alias: Optional[str] = None
+    volume_id: Optional[str] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class SnapshotExportTask:
     comment: str
-    osu_export: "OsuExportSnapshotExportTask"
+    osu_export: OsuExportSnapshotExportTask
     progress: int
     snapshot_id: str
     state: str
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
     task_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class SourceNet:
     account_id: str
@@ -1268,18 +1435,21 @@ class SourceNet:
     net_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class SourceSecurityGroup:
     security_group_account_id: str
     security_group_name: str
 
 
+@alias(to_camelcase)
 @dataclass
 class StateComment:
-    state_code: str
-    state_message: str
+    state_code: Optional[str] = None
+    state_message: Optional[str] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class Subnet:
     available_ips_count: int
@@ -1289,9 +1459,10 @@ class Subnet:
     state: str
     subnet_id: str
     subregion_name: str
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
 
 
+@alias(to_camelcase)
 @dataclass
 class Subregion:
     region_name: str
@@ -1299,6 +1470,7 @@ class Subregion:
     subregion_name: str
 
 
+@alias(to_camelcase)
 @dataclass
 class Tag:
     key: str
@@ -1307,51 +1479,65 @@ class Tag:
     value: str
 
 
+@alias(to_camelcase)
+@dataclass
+class VgwTelemetry:
+    accepted_route_count: int
+    last_state_change_date: str
+    outside_ip_address: str
+    state: str
+    state_description: str
+
+
+@alias(to_camelcase)
 @dataclass
 class VirtualGateway:
     connection_type: str
-    net_to_virtual_gateway_links: list['NetToVirtualGatewayLink']
+    net_to_virtual_gateway_links: list[NetToVirtualGatewayLink]
     state: str
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
     virtual_gateway_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class Vm:
     architecture: str
-    block_device_mappings: list['BlockDeviceMappingCreated']
+    block_device_mappings: list[BlockDeviceMappingCreated]
     bsu_optimized: bool
-    client_token: str
+    creation_date: str
     deletion_protection: bool
     hypervisor: str
     image_id: str
     is_source_dest_checked: bool
     keypair_name: str
     launch_number: int
-    net_id: str
-    nics: list['NicLight']
-    os_family: str
     performance: str
-    placement: "Placement"
+    placement: Placement
     private_dns_name: str
     private_ip: str
     product_codes: list[str]
-    public_dns_name: str
-    public_ip: str
     reservation_id: str
     root_device_name: str
     root_device_type: str
-    security_groups: list['SecurityGroupLight']
+    security_groups: list[SecurityGroupLight]
     state: str
     state_reason: str
-    subnet_id: str
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
     user_data: str
     vm_id: str
     vm_initiated_shutdown_behavior: str
     vm_type: str
+    client_token: Optional[str] = None
+    net_id: Optional[str] = None
+    nics: Optional[list[NicLight]] = None
+    os_family: Optional[str] = None
+    public_dns_name: Optional[str] = None
+    public_ip: Optional[str] = None
+    subnet_id: Optional[str] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class VmState:
     current_state: str
@@ -1359,14 +1545,16 @@ class VmState:
     vm_id: str
 
 
+@alias(to_camelcase)
 @dataclass
 class VmStates:
-    maintenance_events: list['MaintenanceEvent']
+    maintenance_events: list[MaintenanceEvent]
     subregion_name: str
     vm_id: str
     vm_state: str
 
 
+@alias(to_camelcase)
 @dataclass
 class VmType:
     bsu_optimized: bool
@@ -1375,43 +1563,49 @@ class VmType:
     vcore_count: int
     vm_type_name: str
     volume_count: int
-    volume_size: int
+    volume_size: Optional[int] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class Volume:
-    iops: int
-    linked_volumes: list['LinkedVolume']
+    creation_date: str
+    linked_volumes: list[LinkedVolume]
     size: int
-    snapshot_id: str
     state: str
     subregion_name: str
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
     volume_id: str
     volume_type: str
+    iops: Optional[int] = None
+    snapshot_id: Optional[str] = None
 
 
+@alias(to_camelcase)
 @dataclass
 class VpnConnection:
     client_gateway_configuration: str
     client_gateway_id: str
     connection_type: str
-    routes: list['RouteLight']
+    routes: list[RouteLight]
     state: str
     static_routes_only: bool
-    tags: list['ResourceTag']
+    tags: list[ResourceTag]
+    vgw_telemetries: list[VgwTelemetry]
     virtual_gateway_id: str
     vpn_connection_id: str
-    vpn_options: "VpnOptions"
+    vpn_options: VpnOptions
 
 
+@alias(to_camelcase)
 @dataclass
 class VpnOptions:
-    phase1_options: "Phase1Options"
-    phase2_options: "Phase2Options"
+    phase1_options: Phase1Options
+    phase2_options: Phase2Options
     tunnel_inside_ip_range: str
 
 
+@alias(to_camelcase)
 @dataclass
 class With:
     account_id: bool
@@ -1430,5 +1624,3 @@ class With:
     request_id: bool
     response_size: bool
     response_status_code: bool
-
-

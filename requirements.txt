@@ -1,0 +1,4 @@
+apischema==0.17.5
+osc-sdk==1.8.0
+PyYAML==6.0
+requests==2.27.1

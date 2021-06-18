@@ -1,0 +1,27 @@
+default_language_version:
+    python: python3.9
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+    -   id: check-docstring-first
+    -   id: check-json
+    -   id: check-merge-conflict
+    -   id: check-toml
+    -   id: check-yaml
+    -   id: debug-statements
+    -   id: end-of-file-fixer
+    -   id: requirements-txt-fixer
+    -   id: trailing-whitespace
+-   repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.5.5
+    hooks:
+    -   id: isort
+-   repo: https://github.com/lovesegfault/beautysh
+    rev: v6.2.1
+    hooks:
+    -   id: beautysh
+-   repo: https://github.com/psf/black
+    rev: 21.9b0
+    hooks:
+    -   id: black
