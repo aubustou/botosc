@@ -9,9 +9,6 @@ import requests
 import yaml
 from osc_sdk import OSCCall
 
-from botosc import mixin, model
-
-
 YAML_URL = "https://raw.githubusercontent.com/outscale/osc-api/master/outscale.yaml"
 TYPES = {
     "string": str,
@@ -93,7 +90,10 @@ def create_connector(api_content: dict, entries: dict) -> list[tuple[str, str, s
             "schema"
         ]["$ref"].rsplit("/", 1)[-1]
         response_obj = entries.get(response)
-        if not(response_obj and [x for x in fields(response_obj) if x.name != "ResponseContext"]):
+        if not (
+            response_obj
+            and [x for x in fields(response_obj) if x.name != "ResponseContext"]
+        ):
             response_obj = None
 
         calls.append((name.strip("/"), entries.get(args), response_obj))
@@ -101,7 +101,9 @@ def create_connector(api_content: dict, entries: dict) -> list[tuple[str, str, s
     return calls
 
 
-def generate_connector_code(calls: list, entries: dict, only_reply_as_dict:bool=False) -> list[str]:
+def generate_connector_code(
+    calls: list, entries: dict, only_reply_as_dict: bool = False
+) -> list[str]:
     imports = ["from osc_sdk import OSCCall\n"]
     botosc_imports = set()
     import_any = False
@@ -130,7 +132,12 @@ def generate_connector_code(calls: list, entries: dict, only_reply_as_dict:bool=
             elif type_.__name__ == "list":
                 str_type = str(type_)
                 listed_type = LISTED_TYPE_PATTERN.search(str_type)
-                if listed_type and listed_type.group(1) not in {"str", "int", "float", "bool"}:
+                if listed_type and listed_type.group(1) not in {
+                    "str",
+                    "int",
+                    "float",
+                    "bool",
+                }:
                     print(" # " + listed_type.group(1))
                     botosc_imports.add(listed_type.group(1))
             else:
@@ -141,10 +148,28 @@ def generate_connector_code(calls: list, entries: dict, only_reply_as_dict:bool=
                 required_args.append((field_.name, str_type, asdict_))
 
         code += [f"    def {camel_to_snake(call[0].strip('/'))}("]
-        code += [", ".join(["self", *[f"{camel_to_snake(name)}: {type_}" for name, type_, _ in required_args]])]
+        code += [
+            ", ".join(
+                [
+                    "self",
+                    *[
+                        f"{camel_to_snake(name)}: {type_}"
+                        for name, type_, _ in required_args
+                    ],
+                ]
+            )
+        ]
         if optional_args:
             import_optional = True
-            code += [", ", ", ".join([f"{camel_to_snake(name)}: Optional[{type_}] = None" for name, type_, _ in optional_args])]
+            code += [
+                ", ",
+                ", ".join(
+                    [
+                        f"{camel_to_snake(name)}: Optional[{type_}] = None"
+                        for name, type_, _ in optional_args
+                    ]
+                ),
+            ]
         code += ["):\n"]
 
         if optional_args:
@@ -154,7 +179,9 @@ def generate_connector_code(calls: list, entries: dict, only_reply_as_dict:bool=
             code += [f"        if {camel_to_snake(name)} is not None:\n"]
             if asdict_:
                 import_asdict = True
-                code += [f'            params["{name}"] = asdict({camel_to_snake(name)})\n']
+                code += [
+                    f'            params["{name}"] = asdict({camel_to_snake(name)})\n'
+                ]
             else:
                 code += [f'            params["{name}"] = {camel_to_snake(name)}\n']
 
@@ -201,7 +228,9 @@ def generate_connector_code(calls: list, entries: dict, only_reply_as_dict:bool=
             if listed_type not in {"str", "int", "float", "bool"}:
                 print(" # " + listed_type)
                 botosc_imports.add(listed_type)
-                code += [f'[deserialize({listed_type}, x) for x in response["{return_obj.name}"]]\n']
+                code += [
+                    f'[deserialize({listed_type}, x) for x in response["{return_obj.name}"]]\n'
+                ]
             else:
                 code += [f'response["{return_obj.name}"]\n']
         else:
@@ -236,8 +265,8 @@ def generate_code(entries) -> list[str]:
         inheritance = entry.__base__ if entry.__base__ != object else None
         if inheritance and inheritance.__module__ != "__main__":
             imports += [
-                    f"from {inheritance.__module__} import {inheritance.__name__}\n"
-                ]
+                f"from {inheritance.__module__} import {inheritance.__name__}\n"
+            ]
 
         class_code += [
             f"class {name}"
@@ -262,7 +291,19 @@ def generate_code(entries) -> list[str]:
     return imports + ["\n", "\n"] + class_codes
 
 
-def write_modules(init_code: list[str], connector_code: list[str], model_code: list[str]):
+def generate_init_code(entries: dict) -> list[str]:
+    code = [
+        "from apischema import settings\n",
+        "from botosc.connector import Connector\n",
+        "settings.camel_case = True",
+    ]
+
+    return code
+
+
+def write_modules(
+    init_code: list[str], connector_code: list[str], model_code: list[str]
+):
     generated_modules = Path("botosc")
     generated_modules.mkdir(parents=True, exist_ok=True)
 
@@ -291,7 +332,9 @@ def main():
 
     model_code = generate_code(entries)
 
-    write_modules([""], connector_code, model_code)
+    init_code = generate_init_code(entries)
+
+    write_modules(init_code, connector_code, model_code)
 
 
 if __name__ == "__main__":
