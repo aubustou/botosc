@@ -177,8 +177,12 @@ def generate_connector_code(calls: list, entries: dict, only_reply_as_dict:bool=
         code += [")\n"]
 
         # Prepare for deserialisation
-        if only_reply_as_dict or call[2] is None:
+        if only_reply_as_dict:
             code += ["        return response\n", "\n"]
+            continue
+
+        if call[2] is None:
+            code += ["        return\n", "\n"]
             continue
 
         code += ["        return "]

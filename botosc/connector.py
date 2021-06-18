@@ -1,109 +1,109 @@
 from osc_sdk import OSCCall
-from botosc.model import FiltersListenerRule
-from botosc.model import DirectLink
-from botosc.model import FiltersNetAccessPoint
-from botosc.model import Vm
-from botosc.model import Volume
-from botosc.model import Log
-from botosc.model import FiltersNatService
-from botosc.model import FiltersFlexibleGpu
-from botosc.model import Tag
-from botosc.model import BlockDeviceMappingImage
-from botosc.model import ListenerForCreation
-from botosc.model import FlexibleGpuCatalog
-from botosc.model import FiltersQuota
-from botosc.model import FiltersDirectLinkInterface
-from botosc.model import AccessKeySecretKey
-from botosc.model import FiltersClientGateway
-from botosc.model import Subnet
-from botosc.model import InternetService
-from botosc.model import Snapshot
-from botosc.model import Account
-from botosc.model import NetPeering
-from botosc.model import FiltersNetPeering
-from botosc.model import AccessKey
-from botosc.model import VmStates
-from botosc.model import OsuExportToCreate
-from botosc.model import FiltersVolume
-from botosc.model import ClientGateway
-from botosc.model import QuotaTypes
-from botosc.model import NetAccessPoint
-from botosc.model import FiltersExportTask
-from botosc.model import Subregion
-from botosc.model import FiltersSnapshot
-from botosc.model import VmState
-from botosc.model import ResourceLoadBalancerTag
-from botosc.model import NetToVirtualGatewayLink
-from botosc.model import LinkNicToUpdate
-from botosc.model import BackendVmHealth
-from botosc.model import With
-from botosc.model import BlockDeviceMappingVmCreation
-from botosc.model import AccessLog
-from botosc.model import VirtualGateway
-from botosc.model import Service
-from botosc.model import DirectLinkInterfaces
-from botosc.model import PublicIp
-from botosc.model import Nic
-from botosc.model import FiltersNet
-from botosc.model import FiltersApiLog
-from botosc.model import FiltersDirectLink
-from botosc.model import Keypair
-from botosc.model import Image
-from botosc.model import FiltersCa
-from botosc.model import FiltersNic
-from botosc.model import FiltersVpnConnection
-from botosc.model import FiltersVirtualGateway
-from botosc.model import FiltersVm
-from botosc.model import FiltersKeypair
-from botosc.model import FiltersVmType
-from botosc.model import ListenerRule
-from botosc.model import FiltersPublicIp
-from botosc.model import ListenerRuleForCreation
-from botosc.model import FiltersSubregion
-from botosc.model import FiltersProductType
-from botosc.model import LoadBalancerTag
 from botosc.model import KeypairCreated
-from botosc.model import ImageExportTask
-from botosc.model import Placement
-from botosc.model import VmType
-from botosc.model import Ca
-from botosc.model import RouteTable
-from botosc.model import FiltersImage
-from botosc.model import ApiAccessRule
-from botosc.model import FiltersLoadBalancer
-from botosc.model import ConsumptionEntry
-from botosc.model import PrivateIpLight
-from botosc.model import FiltersService
-from botosc.model import FiltersSubnet
-from botosc.model import FiltersRouteTable
-from botosc.model import SnapshotExportTask
-from botosc.model import FiltersInternetService
-from botosc.model import FlexibleGpu
-from botosc.model import ServerCertificate
-from botosc.model import FiltersTag
-from botosc.model import LoadBalancer
-from botosc.model import PermissionsOnResourceCreation
-from botosc.model import HealthCheck
-from botosc.model import FiltersAccessKeys
-from botosc.model import Location
-from botosc.model import FiltersServerCertificate
-from botosc.model import VpnConnection
-from botosc.model import BlockDeviceMappingVmUpdate
-from botosc.model import NicForVmCreation
-from botosc.model import ResourceTag
-from botosc.model import NatService
-from botosc.model import FiltersVmsState
-from botosc.model import DhcpOptionsSet
-from botosc.model import Region
-from botosc.model import ProductType
-from botosc.model import DirectLinkInterface
-from botosc.model import SecurityGroup
-from botosc.model import LoadBalancerLight
-from botosc.model import FiltersApiAccessRule
-from botosc.model import Net
-from botosc.model import FiltersSecurityGroup
-from botosc.model import SecurityGroupRule
+from botosc.model import FiltersNet
+from botosc.model import DirectLink
+from botosc.model import PublicIp
+from botosc.model import FiltersApiLog
+from botosc.model import Keypair
+from botosc.model import BackendVmHealth
+from botosc.model import ListenerRuleForCreation
 from botosc.model import FiltersDhcpOptions
+from botosc.model import FiltersVpnConnection
+from botosc.model import Ca
+from botosc.model import LoadBalancerLight
+from botosc.model import Tag
+from botosc.model import Region
+from botosc.model import FiltersImage
+from botosc.model import NicForVmCreation
+from botosc.model import ConsumptionEntry
+from botosc.model import ListenerRule
+from botosc.model import ImageExportTask
+from botosc.model import FiltersQuota
+from botosc.model import FiltersNic
+from botosc.model import FiltersFlexibleGpu
+from botosc.model import FiltersVmType
+from botosc.model import SecurityGroup
+from botosc.model import OsuExportToCreate
+from botosc.model import ServerCertificate
+from botosc.model import DhcpOptionsSet
+from botosc.model import With
+from botosc.model import ApiAccessRule
+from botosc.model import NetToVirtualGatewayLink
+from botosc.model import FiltersNetPeering
+from botosc.model import Service
+from botosc.model import VpnConnection
+from botosc.model import ResourceTag
+from botosc.model import HealthCheck
+from botosc.model import FiltersService
+from botosc.model import DirectLinkInterface
+from botosc.model import VmStates
+from botosc.model import FiltersClientGateway
+from botosc.model import FiltersSubnet
+from botosc.model import AccessKeySecretKey
+from botosc.model import PrivateIpLight
+from botosc.model import FiltersLoadBalancer
+from botosc.model import ResourceLoadBalancerTag
+from botosc.model import FiltersVmsState
+from botosc.model import FiltersExportTask
+from botosc.model import FiltersTag
+from botosc.model import QuotaTypes
+from botosc.model import FiltersSnapshot
+from botosc.model import FiltersInternetService
+from botosc.model import FiltersKeypair
+from botosc.model import FlexibleGpu
+from botosc.model import FiltersServerCertificate
+from botosc.model import FiltersSubregion
+from botosc.model import BlockDeviceMappingVmUpdate
+from botosc.model import RouteTable
+from botosc.model import FiltersRouteTable
+from botosc.model import Log
+from botosc.model import ClientGateway
+from botosc.model import Subnet
+from botosc.model import SnapshotExportTask
+from botosc.model import FiltersDirectLinkInterface
+from botosc.model import FiltersApiAccessRule
+from botosc.model import Account
+from botosc.model import FiltersVirtualGateway
+from botosc.model import AccessKey
+from botosc.model import LoadBalancer
+from botosc.model import BlockDeviceMappingImage
+from botosc.model import FiltersVolume
+from botosc.model import FiltersProductType
+from botosc.model import Nic
+from botosc.model import SecurityGroupRule
+from botosc.model import BlockDeviceMappingVmCreation
+from botosc.model import Image
+from botosc.model import FiltersDirectLink
+from botosc.model import FiltersSecurityGroup
+from botosc.model import LoadBalancerTag
+from botosc.model import PermissionsOnResourceCreation
+from botosc.model import FiltersVm
+from botosc.model import VirtualGateway
+from botosc.model import FiltersAccessKeys
+from botosc.model import NetAccessPoint
+from botosc.model import NatService
+from botosc.model import NetPeering
+from botosc.model import InternetService
+from botosc.model import Net
+from botosc.model import FiltersPublicIp
+from botosc.model import FlexibleGpuCatalog
+from botosc.model import AccessLog
+from botosc.model import Vm
+from botosc.model import ListenerForCreation
+from botosc.model import FiltersListenerRule
+from botosc.model import Location
+from botosc.model import LinkNicToUpdate
+from botosc.model import Subregion
+from botosc.model import Snapshot
+from botosc.model import ProductType
+from botosc.model import VmState
+from botosc.model import VmType
+from botosc.model import Volume
+from botosc.model import FiltersNatService
+from botosc.model import DirectLinkInterfaces
+from botosc.model import Placement
+from botosc.model import FiltersCa
+from botosc.model import FiltersNetAccessPoint
 from typing import Optional
 from dataclasses import asdict
 from apischema import deserialize
@@ -122,7 +122,7 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("CheckAuthentication", Login=login, Password=password, **params)
-        return response
+        return
 
     def create_access_key(self, dry_run: Optional[bool] = None, expiration_date: Optional[str] = None):
         params = {}
@@ -314,7 +314,7 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("CreateLoadBalancerTags", LoadBalancerNames=load_balancer_names, Tags=tags, **params)
-        return response
+        return
 
     def create_nat_service(self, public_ip_id: str, subnet_id: str, dry_run: Optional[bool] = None):
         params = {}
@@ -473,7 +473,7 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("CreateTags", ResourceIds=resource_ids, Tags=tags, **params)
-        return response
+        return
 
     def create_virtual_gateway(self, connection_type: str, dry_run: Optional[bool] = None):
         params = {}
@@ -554,105 +554,105 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("CreateVpnConnectionRoute", DestinationIpRange=destination_ip_range, VpnConnectionId=vpn_connection_id, **params)
-        return response
+        return
 
     def delete_access_key(self, access_key_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteAccessKey", AccessKeyId=access_key_id, **params)
-        return response
+        return
 
     def delete_api_access_rule(self, api_access_rule_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteApiAccessRule", ApiAccessRuleId=api_access_rule_id, **params)
-        return response
+        return
 
     def delete_ca(self, ca_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteCa", CaId=ca_id, **params)
-        return response
+        return
 
     def delete_client_gateway(self, client_gateway_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteClientGateway", ClientGatewayId=client_gateway_id, **params)
-        return response
+        return
 
     def delete_dhcp_options(self, dhcp_options_set_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteDhcpOptions", DhcpOptionsSetId=dhcp_options_set_id, **params)
-        return response
+        return
 
     def delete_direct_link(self, direct_link_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteDirectLink", DirectLinkId=direct_link_id, **params)
-        return response
+        return
 
     def delete_direct_link_interface(self, direct_link_interface_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteDirectLinkInterface", DirectLinkInterfaceId=direct_link_interface_id, **params)
-        return response
+        return
 
     def delete_export_task(self, export_task_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteExportTask", ExportTaskId=export_task_id, **params)
-        return response
+        return
 
     def delete_flexible_gpu(self, flexible_gpu_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteFlexibleGpu", FlexibleGpuId=flexible_gpu_id, **params)
-        return response
+        return
 
     def delete_image(self, image_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteImage", ImageId=image_id, **params)
-        return response
+        return
 
     def delete_internet_service(self, internet_service_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteInternetService", InternetServiceId=internet_service_id, **params)
-        return response
+        return
 
     def delete_keypair(self, keypair_name: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteKeypair", KeypairName=keypair_name, **params)
-        return response
+        return
 
     def delete_listener_rule(self, listener_rule_name: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteListenerRule", ListenerRuleName=listener_rule_name, **params)
-        return response
+        return
 
     def delete_load_balancer(self, load_balancer_name: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteLoadBalancer", LoadBalancerName=load_balancer_name, **params)
-        return response
+        return
 
     def delete_load_balancer_listeners(self, load_balancer_name: str, load_balancer_ports: list[int], dry_run: Optional[bool] = None):
         params = {}
@@ -673,42 +673,42 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteLoadBalancerTags", LoadBalancerNames=load_balancer_names, Tags=tags, **params)
-        return response
+        return
 
     def delete_nat_service(self, nat_service_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteNatService", NatServiceId=nat_service_id, **params)
-        return response
+        return
 
     def delete_net(self, net_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteNet", NetId=net_id, **params)
-        return response
+        return
 
     def delete_net_access_point(self, net_access_point_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteNetAccessPoint", NetAccessPointId=net_access_point_id, **params)
-        return response
+        return
 
     def delete_net_peering(self, net_peering_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteNetPeering", NetPeeringId=net_peering_id, **params)
-        return response
+        return
 
     def delete_nic(self, nic_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteNic", NicId=nic_id, **params)
-        return response
+        return
 
     def delete_public_ip(self, dry_run: Optional[bool] = None, public_ip: Optional[str] = None, public_ip_id: Optional[str] = None):
         params = {}
@@ -719,7 +719,7 @@ class Connector(OSCCall):
         if public_ip_id is not None:
             params["PublicIpId"] = public_ip_id
         response = self.make_request("DeletePublicIp", **params)
-        return response
+        return
 
     def delete_route(self, destination_ip_range: str, route_table_id: str, dry_run: Optional[bool] = None):
         params = {}
@@ -733,7 +733,7 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteRouteTable", RouteTableId=route_table_id, **params)
-        return response
+        return
 
     def delete_security_group(self, dry_run: Optional[bool] = None, security_group_id: Optional[str] = None, security_group_name: Optional[str] = None):
         params = {}
@@ -744,7 +744,7 @@ class Connector(OSCCall):
         if security_group_name is not None:
             params["SecurityGroupName"] = security_group_name
         response = self.make_request("DeleteSecurityGroup", **params)
-        return response
+        return
 
     def delete_security_group_rule(self, flow: str, security_group_id: str, dry_run: Optional[bool] = None, from_port_range: Optional[int] = None, ip_protocol: Optional[str] = None, ip_range: Optional[str] = None, rules: Optional[list['SecurityGroupRule']] = None, security_group_account_id_to_unlink: Optional[str] = None, security_group_name_to_unlink: Optional[str] = None, to_port_range: Optional[int] = None):
         params = {}
@@ -772,35 +772,35 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteServerCertificate", Name=name, **params)
-        return response
+        return
 
     def delete_snapshot(self, snapshot_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteSnapshot", SnapshotId=snapshot_id, **params)
-        return response
+        return
 
     def delete_subnet(self, subnet_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteSubnet", SubnetId=subnet_id, **params)
-        return response
+        return
 
     def delete_tags(self, resource_ids: list[str], tags: list['ResourceTag'], dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteTags", ResourceIds=resource_ids, Tags=tags, **params)
-        return response
+        return
 
     def delete_virtual_gateway(self, virtual_gateway_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteVirtualGateway", VirtualGatewayId=virtual_gateway_id, **params)
-        return response
+        return
 
     def delete_vms(self, vm_ids: list[str], dry_run: Optional[bool] = None):
         params = {}
@@ -814,42 +814,42 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteVolume", VolumeId=volume_id, **params)
-        return response
+        return
 
     def delete_vpn_connection(self, vpn_connection_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteVpnConnection", VpnConnectionId=vpn_connection_id, **params)
-        return response
+        return
 
     def delete_vpn_connection_route(self, destination_ip_range: str, vpn_connection_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteVpnConnectionRoute", DestinationIpRange=destination_ip_range, VpnConnectionId=vpn_connection_id, **params)
-        return response
+        return
 
     def deregister_vms_in_load_balancer(self, backend_vm_ids: list[str], load_balancer_name: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeregisterVmsInLoadBalancer", BackendVmIds=backend_vm_ids, LoadBalancerName=load_balancer_name, **params)
-        return response
+        return
 
     def link_flexible_gpu(self, flexible_gpu_id: str, vm_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("LinkFlexibleGpu", FlexibleGpuId=flexible_gpu_id, VmId=vm_id, **params)
-        return response
+        return
 
     def link_internet_service(self, internet_service_id: str, net_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("LinkInternetService", InternetServiceId=internet_service_id, NetId=net_id, **params)
-        return response
+        return
 
     def link_nic(self, device_number: int, nic_id: str, vm_id: str, dry_run: Optional[bool] = None):
         params = {}
@@ -869,7 +869,7 @@ class Connector(OSCCall):
         if secondary_private_ip_count is not None:
             params["SecondaryPrivateIpCount"] = secondary_private_ip_count
         response = self.make_request("LinkPrivateIps", NicId=nic_id, **params)
-        return response
+        return
 
     def link_public_ip(self, allow_relink: Optional[bool] = None, dry_run: Optional[bool] = None, nic_id: Optional[str] = None, private_ip: Optional[str] = None, public_ip: Optional[str] = None, public_ip_id: Optional[str] = None, vm_id: Optional[str] = None):
         params = {}
@@ -909,7 +909,7 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("LinkVolume", DeviceName=device_name, VmId=vm_id, VolumeId=volume_id, **params)
-        return response
+        return
 
     def read_access_keys(self, dry_run: Optional[bool] = None, filters: Optional["FiltersAccessKeys"] = None):
         params = {}
@@ -1345,35 +1345,35 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("RebootVms", VmIds=vm_ids, **params)
-        return response
+        return
 
     def register_vms_in_load_balancer(self, backend_vm_ids: list[str], load_balancer_name: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("RegisterVmsInLoadBalancer", BackendVmIds=backend_vm_ids, LoadBalancerName=load_balancer_name, **params)
-        return response
+        return
 
     def reject_net_peering(self, net_peering_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("RejectNetPeering", NetPeeringId=net_peering_id, **params)
-        return response
+        return
 
     def reset_account_password(self, password: str, token: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("ResetAccountPassword", Password=password, Token=token, **params)
-        return response
+        return
 
     def send_reset_password_email(self, email: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("SendResetPasswordEmail", Email=email, **params)
-        return response
+        return
 
     def start_vms(self, vm_ids: list[str], dry_run: Optional[bool] = None):
         params = {}
@@ -1396,28 +1396,28 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("UnlinkFlexibleGpu", FlexibleGpuId=flexible_gpu_id, **params)
-        return response
+        return
 
     def unlink_internet_service(self, internet_service_id: str, net_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("UnlinkInternetService", InternetServiceId=internet_service_id, NetId=net_id, **params)
-        return response
+        return
 
     def unlink_nic(self, link_nic_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("UnlinkNic", LinkNicId=link_nic_id, **params)
-        return response
+        return
 
     def unlink_private_ips(self, nic_id: str, private_ips: list[str], dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("UnlinkPrivateIps", NicId=nic_id, PrivateIps=private_ips, **params)
-        return response
+        return
 
     def unlink_public_ip(self, dry_run: Optional[bool] = None, link_public_ip_id: Optional[str] = None, public_ip: Optional[str] = None):
         params = {}
@@ -1428,21 +1428,21 @@ class Connector(OSCCall):
         if public_ip is not None:
             params["PublicIp"] = public_ip
         response = self.make_request("UnlinkPublicIp", **params)
-        return response
+        return
 
     def unlink_route_table(self, link_route_table_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("UnlinkRouteTable", LinkRouteTableId=link_route_table_id, **params)
-        return response
+        return
 
     def unlink_virtual_gateway(self, net_id: str, virtual_gateway_id: str, dry_run: Optional[bool] = None):
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("UnlinkVirtualGateway", NetId=net_id, VirtualGatewayId=virtual_gateway_id, **params)
-        return response
+        return
 
     def unlink_volume(self, volume_id: str, dry_run: Optional[bool] = None, force_unlink: Optional[bool] = None):
         params = {}
@@ -1451,7 +1451,7 @@ class Connector(OSCCall):
         if force_unlink is not None:
             params["ForceUnlink"] = force_unlink
         response = self.make_request("UnlinkVolume", VolumeId=volume_id, **params)
-        return response
+        return
 
     def update_access_key(self, access_key_id: str, state: str, dry_run: Optional[bool] = None):
         params = {}
