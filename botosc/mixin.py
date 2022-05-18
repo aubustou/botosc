@@ -8,7 +8,7 @@ class ResponseParameter:
 
 @dataclass
 class VmMixin:
-    toto: str
+    toto: str = field(default="toto", init=False)
 
     @property
     def tutu(self):

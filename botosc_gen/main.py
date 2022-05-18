@@ -1,4 +1,5 @@
 import argparse
+import importlib.util
 import inspect
 import re
 import sys
@@ -19,7 +20,9 @@ TYPES = {
     "double": int,
     "float": float,
 }
-MIXINS: list[tuple[str, Any]] = []
+
+BASE_TYPES = {"str", "int", "float", "bool"}
+MIXINS: dict[str, type] = {}
 LISTED_TYPE_PATTERN = re.compile(r"^list\[(?:\"|')?([a-zA-Z0-9]+)(?:\"|')?\]$")
 
 
@@ -44,11 +47,20 @@ def get_type(property_: dict) -> Any:
 def get_mixins():
     global MIXINS
 
-    MIXINS = [
-        x
-        for y in [sys.modules[__name__], sys.modules.get("botosc.mixin")]
-        for x in inspect.getmembers(y, inspect.isclass)
-    ]
+    module_name = "botosc.mixin"
+    spec = importlib.util.spec_from_file_location(
+        module_name, Path(__file__).parent / ".." / "botosc" / "mixin.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+
+    MIXINS = {
+        name: member
+        for y in [sys.modules[__name__], sys.modules.get(module_name)]
+        for name, member in inspect.getmembers(y, inspect.isclass)
+        if name.endswith("Mixin")
+    }
 
 
 def create_dataclasses(api_content: dict) -> dict:
@@ -68,7 +80,10 @@ def create_dataclasses(api_content: dict) -> dict:
                 key = key + "_"
             attributes.append((key, type_, field(metadata={"required": required})))
 
-        bases = tuple(x[1] for x in MIXINS if x[0] == (name + "Mixin"))
+        if mixin := MIXINS.get(name + "Mixin"):
+            bases = (mixin,)
+        else:
+            bases = tuple()
 
         entries[name] = make_dataclass(
             name,
@@ -130,12 +145,7 @@ def generate_connector_code(
             elif type_.__name__ == "list":
                 str_type = str(type_)
                 listed_type = LISTED_TYPE_PATTERN.search(str_type)
-                if listed_type and listed_type.group(1) not in {
-                    "str",
-                    "int",
-                    "float",
-                    "bool",
-                }:
+                if listed_type and listed_type.group(1) not in BASE_TYPES:
                     print(" # " + listed_type.group(1))
                     botosc_imports.add(listed_type.group(1))
             else:
@@ -158,10 +168,10 @@ def generate_connector_code(
                     # Meaning we have a list
                     return_is_list = True
                     return_type = listed_type.group(1)
-                    if return_type not in {"str", "int", "float", "bool"}:
+                    if return_type not in BASE_TYPES:
                         print(" # " + return_type)
                         botosc_imports.add(return_type)
-                elif return_type not in {"str", "int", "float", "bool"}:
+                elif return_type not in BASE_TYPES:
                     botosc_imports.add(return_type)
             else:
                 return_type = return_type.__name__
@@ -237,17 +247,43 @@ def generate_connector_code(
             code += ["        return\n", "\n"]
             continue
 
-        code += ["        return "]
-
         import_apischema = True
         if return_is_list:
             code += [
-                f'[deserialize({return_type}, x) for x in response["{return_obj.name}"]]\n'
+                f"""
+        items = [deserialize({return_type}, x) for x in response["{return_obj.name}"]]
+"""
             ]
-        else:
-            code += [f'deserialize({return_type}, response["{return_obj.name}"])\n']
+            if return_type not in BASE_TYPES:
+                code += [
+                    """
+        for item in items:
+            item._connection = self
+"""
+                ]
+            code += [
+                """
+        return items
+"""
+            ]
 
-        code += ["\n"]
+        else:
+            code += [
+                f"""
+        item = deserialize({return_type}, response["{return_obj.name}"])
+"""
+            ]
+            if return_type not in BASE_TYPES:
+                code += [
+                    """
+        item._connection = self
+"""
+                ]
+            code += [
+                """
+        return item
+"""
+            ]
 
     # Manage imports
     imports += [f"from botosc.model import {x}\n" for x in botosc_imports]
@@ -265,30 +301,46 @@ def generate_connector_code(
 
 def generate_code(entries) -> list[str]:
     imports = [
-        "from __future__ import annotations\nfrom dataclasses import dataclass\nfrom typing import Optional\nfrom apischema.aliases import alias\nfrom .utils import to_camelcase"
+        """from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Optional
+
+from apischema.aliases import alias
+
+from .base import BaseObject
+from .utils import to_camelcase
+"""
     ]
     class_codes = []
+
     for name, entry in entries.items():
         if name.endswith("Response") or name.endswith("Request"):
             continue
         print(name)
+
+        mixin_field_names: set[str] = set()
+
         class_code = ["@alias(to_camelcase)\n@dataclass\n"]
+
+        base_classes = ["BaseObject"]
         inheritance = entry.__base__ if entry.__base__ != object else None
         if inheritance and inheritance.__module__ != "__main__":
-            imports += [
-                f"from {inheritance.__module__} import {inheritance.__name__}\n"
-            ]
+            mixin_name = inheritance.__name__
+            imports += [f"from {inheritance.__module__} import {mixin_name}\n"]
+            mixin_field_names = {x.name for x in fields(inheritance)}
+            base_classes.append(mixin_name)
 
-        class_code += [
-            f"class {name}"
-            + (f"({inheritance.__name__})" if inheritance else "")
-            + ":\n"
-        ]
+        class_code += [f"class {name}({', '.join(x for x in base_classes)}):\n"]
 
         attrs = []
         with_default_attrs = []
         for field in fields(entry):
             name = field.name
+
+            if name in mixin_field_names:
+                continue
+
             type_ = field.type
             print(" - " + name)
             if isinstance(type_, str):
@@ -305,7 +357,7 @@ def generate_code(entries) -> list[str]:
             else:
                 str_type = type_.__name__
 
-            if not field.metadata["required"]:
+            if not field.metadata.get("required"):
                 with_default_attrs.append((name, str_type))
             else:
                 attrs.append((name, str_type))
@@ -329,17 +381,49 @@ def generate_init_code(entries: dict) -> list[str]:
     return code
 
 
+def generate_base() -> list[str]:
+    code = [
+        """from __future__ import annotations
+from typing import TYPE_CHECKING, Optional
+
+if TYPE_CHECKING:
+    from .connector import Connector
+
+
+class BotoscError(Exception):
+    pass
+
+
+class BaseObject:
+    _connection = None
+
+    @property
+    def connection(self) -> Connector:
+        if self._connection is None:
+            raise BotoscError("Connection has not been initialized")
+        return self._connection
+"""
+    ]
+
+    return code
+
+
 def generate_utils_code() -> list[str]:
     code = [
-        "import re\n",
-        "from osc_sdk import OSCCall\n",
-        "def to_camelcase(name: str) -> str:\n",
-        '    return "".join(x.title() for x in name.split("_"))\n',
-        "\n",
-        "class OSCCall_(OSCCall):\n",
-        "    def make_request(self, *args, **kwargs) -> dict:\n",
-        "        super().make_request(*args, **kwargs)\n",
-        "        return self.response\n",
+        """from __future__ import annotations
+import re
+
+from osc_sdk import OSCCall
+
+
+def to_camelcase(name: str) -> str:
+    return "".join(x.title() for x in name.split("_"))
+
+
+class OSCCall_(OSCCall):
+    def make_request(self, *args, **kwargs) -> dict:
+        super().make_request(*args, **kwargs)
+        return self.response""",
     ]
 
     return code
@@ -350,6 +434,7 @@ def write_modules(
     connector_code: list[str],
     model_code: list[str],
     utils_code: list[str],
+    base_code: list[str],
 ):
     generated_modules = Path("botosc")
     generated_modules.mkdir(parents=True, exist_ok=True)
@@ -358,6 +443,7 @@ def write_modules(
     connector_file = generated_modules / "connector.py"
     model_file = generated_modules / "model.py"
     utils_file = generated_modules / "utils.py"
+    base_file = generated_modules / "base.py"
 
     with init_file.open("w") as file_:
         file_.writelines(init_code)
@@ -370,6 +456,9 @@ def write_modules(
 
     with utils_file.open("w") as file_:
         file_.writelines(utils_code)
+
+    with base_file.open("w") as file_:
+        file_.writelines(base_code)
 
 
 def main():
@@ -392,6 +481,8 @@ def main():
 
     content = yaml.load(yaml_content, Loader)
 
+    get_mixins()
+
     entries = create_dataclasses(content)
 
     connector = create_connector(content, entries)
@@ -403,7 +494,9 @@ def main():
 
     utils_code = generate_utils_code()
 
-    write_modules(init_code, connector_code, model_code, utils_code)
+    base_code = generate_base()
+
+    write_modules(init_code, connector_code, model_code, utils_code, base_code)
 
 
 if __name__ == "__main__":

@@ -126,7 +126,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "AcceptNetPeering", NetPeeringId=net_peering_id, **params
         )
-        return deserialize(NetPeering, response["NetPeering"])
+
+        item = deserialize(NetPeering, response["NetPeering"])
+
+        item._connection = self
+
+        return item
 
     def check_authentication(
         self, login: str, password: str, dry_run: Optional[bool] = None
@@ -148,7 +153,12 @@ class Connector(OSCCall):
         if expiration_date is not None:
             params["ExpirationDate"] = expiration_date
         response = self.make_request("CreateAccessKey", **params)
-        return deserialize(AccessKeySecretKey, response["AccessKey"])
+
+        item = deserialize(AccessKeySecretKey, response["AccessKey"])
+
+        item._connection = self
+
+        return item
 
     def create_account(
         self,
@@ -195,7 +205,12 @@ class Connector(OSCCall):
             ZipCode=zip_code,
             **params
         )
-        return deserialize(Account, response["Account"])
+
+        item = deserialize(Account, response["Account"])
+
+        item._connection = self
+
+        return item
 
     def create_api_access_rule(
         self,
@@ -217,7 +232,12 @@ class Connector(OSCCall):
         if ip_ranges is not None:
             params["IpRanges"] = ip_ranges
         response = self.make_request("CreateApiAccessRule", **params)
-        return deserialize(ApiAccessRule, response["ApiAccessRule"])
+
+        item = deserialize(ApiAccessRule, response["ApiAccessRule"])
+
+        item._connection = self
+
+        return item
 
     def create_ca(
         self,
@@ -231,7 +251,12 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("CreateCa", CaPem=ca_pem, **params)
-        return deserialize(Ca, response["Ca"])
+
+        item = deserialize(Ca, response["Ca"])
+
+        item._connection = self
+
+        return item
 
     def create_client_gateway(
         self,
@@ -250,7 +275,12 @@ class Connector(OSCCall):
             PublicIp=public_ip,
             **params
         )
-        return deserialize(ClientGateway, response["ClientGateway"])
+
+        item = deserialize(ClientGateway, response["ClientGateway"])
+
+        item._connection = self
+
+        return item
 
     def create_dhcp_options(
         self,
@@ -269,7 +299,12 @@ class Connector(OSCCall):
         if ntp_servers is not None:
             params["NtpServers"] = ntp_servers
         response = self.make_request("CreateDhcpOptions", **params)
-        return deserialize(DhcpOptionsSet, response["DhcpOptionsSet"])
+
+        item = deserialize(DhcpOptionsSet, response["DhcpOptionsSet"])
+
+        item._connection = self
+
+        return item
 
     def create_direct_link(
         self,
@@ -288,7 +323,12 @@ class Connector(OSCCall):
             Location=location,
             **params
         )
-        return deserialize(DirectLink, response["DirectLink"])
+
+        item = deserialize(DirectLink, response["DirectLink"])
+
+        item._connection = self
+
+        return item
 
     def create_direct_link_interface(
         self,
@@ -305,7 +345,12 @@ class Connector(OSCCall):
             DirectLinkInterface=serialize(direct_link_interface),
             **params
         )
-        return deserialize(DirectLinkInterfaces, response["DirectLinkInterface"])
+
+        item = deserialize(DirectLinkInterfaces, response["DirectLinkInterface"])
+
+        item._connection = self
+
+        return item
 
     def create_flexible_gpu(
         self,
@@ -328,7 +373,12 @@ class Connector(OSCCall):
             SubregionName=subregion_name,
             **params
         )
-        return deserialize(FlexibleGpu, response["FlexibleGpu"])
+
+        item = deserialize(FlexibleGpu, response["FlexibleGpu"])
+
+        item._connection = self
+
+        return item
 
     def create_image(
         self,
@@ -368,7 +418,12 @@ class Connector(OSCCall):
         if vm_id is not None:
             params["VmId"] = vm_id
         response = self.make_request("CreateImage", **params)
-        return deserialize(Image, response["Image"])
+
+        item = deserialize(Image, response["Image"])
+
+        item._connection = self
+
+        return item
 
     def create_image_export_task(
         self,
@@ -385,7 +440,12 @@ class Connector(OSCCall):
             OsuExport=serialize(osu_export),
             **params
         )
-        return deserialize(ImageExportTask, response["ImageExportTask"])
+
+        item = deserialize(ImageExportTask, response["ImageExportTask"])
+
+        item._connection = self
+
+        return item
 
     def create_internet_service(
         self, dry_run: Optional[bool] = None
@@ -394,7 +454,12 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("CreateInternetService", **params)
-        return deserialize(InternetService, response["InternetService"])
+
+        item = deserialize(InternetService, response["InternetService"])
+
+        item._connection = self
+
+        return item
 
     def create_keypair(
         self,
@@ -410,7 +475,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "CreateKeypair", KeypairName=keypair_name, **params
         )
-        return deserialize(KeypairCreated, response["Keypair"])
+
+        item = deserialize(KeypairCreated, response["Keypair"])
+
+        item._connection = self
+
+        return item
 
     def create_listener_rule(
         self,
@@ -429,7 +499,12 @@ class Connector(OSCCall):
             VmIds=vm_ids,
             **params
         )
-        return deserialize(ListenerRule, response["ListenerRule"])
+
+        item = deserialize(ListenerRule, response["ListenerRule"])
+
+        item._connection = self
+
+        return item
 
     def create_load_balancer(
         self,
@@ -464,7 +539,12 @@ class Connector(OSCCall):
             LoadBalancerName=load_balancer_name,
             **params
         )
-        return deserialize(LoadBalancer, response["LoadBalancer"])
+
+        item = deserialize(LoadBalancer, response["LoadBalancer"])
+
+        item._connection = self
+
+        return item
 
     def create_load_balancer_listeners(
         self,
@@ -481,7 +561,12 @@ class Connector(OSCCall):
             LoadBalancerName=load_balancer_name,
             **params
         )
-        return deserialize(LoadBalancer, response["LoadBalancer"])
+
+        item = deserialize(LoadBalancer, response["LoadBalancer"])
+
+        item._connection = self
+
+        return item
 
     def create_load_balancer_policy(
         self,
@@ -506,7 +591,12 @@ class Connector(OSCCall):
             PolicyType=policy_type,
             **params
         )
-        return deserialize(LoadBalancer, response["LoadBalancer"])
+
+        item = deserialize(LoadBalancer, response["LoadBalancer"])
+
+        item._connection = self
+
+        return item
 
     def create_load_balancer_tags(
         self,
@@ -534,7 +624,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "CreateNatService", PublicIpId=public_ip_id, SubnetId=subnet_id, **params
         )
-        return deserialize(NatService, response["NatService"])
+
+        item = deserialize(NatService, response["NatService"])
+
+        item._connection = self
+
+        return item
 
     def create_net(
         self,
@@ -548,7 +643,12 @@ class Connector(OSCCall):
         if tenancy is not None:
             params["Tenancy"] = tenancy
         response = self.make_request("CreateNet", IpRange=ip_range, **params)
-        return deserialize(Net, response["Net"])
+
+        item = deserialize(Net, response["Net"])
+
+        item._connection = self
+
+        return item
 
     def create_net_access_point(
         self,
@@ -565,7 +665,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "CreateNetAccessPoint", NetId=net_id, ServiceName=service_name, **params
         )
-        return deserialize(NetAccessPoint, response["NetAccessPoint"])
+
+        item = deserialize(NetAccessPoint, response["NetAccessPoint"])
+
+        item._connection = self
+
+        return item
 
     def create_net_peering(
         self, accepter_net_id: str, source_net_id: str, dry_run: Optional[bool] = None
@@ -579,7 +684,12 @@ class Connector(OSCCall):
             SourceNetId=source_net_id,
             **params
         )
-        return deserialize(NetPeering, response["NetPeering"])
+
+        item = deserialize(NetPeering, response["NetPeering"])
+
+        item._connection = self
+
+        return item
 
     def create_nic(
         self,
@@ -599,14 +709,24 @@ class Connector(OSCCall):
         if security_group_ids is not None:
             params["SecurityGroupIds"] = security_group_ids
         response = self.make_request("CreateNic", SubnetId=subnet_id, **params)
-        return deserialize(Nic, response["Nic"])
+
+        item = deserialize(Nic, response["Nic"])
+
+        item._connection = self
+
+        return item
 
     def create_public_ip(self, dry_run: Optional[bool] = None) -> PublicIp:
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("CreatePublicIp", **params)
-        return deserialize(PublicIp, response["PublicIp"])
+
+        item = deserialize(PublicIp, response["PublicIp"])
+
+        item._connection = self
+
+        return item
 
     def create_route(
         self,
@@ -638,7 +758,12 @@ class Connector(OSCCall):
             RouteTableId=route_table_id,
             **params
         )
-        return deserialize(RouteTable, response["RouteTable"])
+
+        item = deserialize(RouteTable, response["RouteTable"])
+
+        item._connection = self
+
+        return item
 
     def create_route_table(
         self, net_id: str, dry_run: Optional[bool] = None
@@ -647,7 +772,12 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("CreateRouteTable", NetId=net_id, **params)
-        return deserialize(RouteTable, response["RouteTable"])
+
+        item = deserialize(RouteTable, response["RouteTable"])
+
+        item._connection = self
+
+        return item
 
     def create_security_group(
         self,
@@ -667,7 +797,12 @@ class Connector(OSCCall):
             SecurityGroupName=security_group_name,
             **params
         )
-        return deserialize(SecurityGroup, response["SecurityGroup"])
+
+        item = deserialize(SecurityGroup, response["SecurityGroup"])
+
+        item._connection = self
+
+        return item
 
     def create_security_group_rule(
         self,
@@ -705,7 +840,12 @@ class Connector(OSCCall):
             SecurityGroupId=security_group_id,
             **params
         )
-        return deserialize(SecurityGroup, response["SecurityGroup"])
+
+        item = deserialize(SecurityGroup, response["SecurityGroup"])
+
+        item._connection = self
+
+        return item
 
     def create_server_certificate(
         self,
@@ -730,7 +870,12 @@ class Connector(OSCCall):
             PrivateKey=private_key,
             **params
         )
-        return deserialize(ServerCertificate, response["ServerCertificate"])
+
+        item = deserialize(ServerCertificate, response["ServerCertificate"])
+
+        item._connection = self
+
+        return item
 
     def create_snapshot(
         self,
@@ -758,7 +903,12 @@ class Connector(OSCCall):
         if volume_id is not None:
             params["VolumeId"] = volume_id
         response = self.make_request("CreateSnapshot", **params)
-        return deserialize(Snapshot, response["Snapshot"])
+
+        item = deserialize(Snapshot, response["Snapshot"])
+
+        item._connection = self
+
+        return item
 
     def create_snapshot_export_task(
         self,
@@ -775,7 +925,12 @@ class Connector(OSCCall):
             SnapshotId=snapshot_id,
             **params
         )
-        return deserialize(SnapshotExportTask, response["SnapshotExportTask"])
+
+        item = deserialize(SnapshotExportTask, response["SnapshotExportTask"])
+
+        item._connection = self
+
+        return item
 
     def create_subnet(
         self,
@@ -792,7 +947,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "CreateSubnet", IpRange=ip_range, NetId=net_id, **params
         )
-        return deserialize(Subnet, response["Subnet"])
+
+        item = deserialize(Subnet, response["Subnet"])
+
+        item._connection = self
+
+        return item
 
     def create_tags(
         self,
@@ -817,7 +977,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "CreateVirtualGateway", ConnectionType=connection_type, **params
         )
-        return deserialize(VirtualGateway, response["VirtualGateway"])
+
+        item = deserialize(VirtualGateway, response["VirtualGateway"])
+
+        item._connection = self
+
+        return item
 
     def create_vms(
         self,
@@ -882,7 +1047,13 @@ class Connector(OSCCall):
         if vm_type is not None:
             params["VmType"] = vm_type
         response = self.make_request("CreateVms", ImageId=image_id, **params)
-        return [deserialize(Vm, x) for x in response["Vms"]]
+
+        items = [deserialize(Vm, x) for x in response["Vms"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def create_volume(
         self,
@@ -907,7 +1078,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "CreateVolume", SubregionName=subregion_name, **params
         )
-        return deserialize(Volume, response["Volume"])
+
+        item = deserialize(Volume, response["Volume"])
+
+        item._connection = self
+
+        return item
 
     def create_vpn_connection(
         self,
@@ -929,7 +1105,12 @@ class Connector(OSCCall):
             VirtualGatewayId=virtual_gateway_id,
             **params
         )
-        return deserialize(VpnConnection, response["VpnConnection"])
+
+        item = deserialize(VpnConnection, response["VpnConnection"])
+
+        item._connection = self
+
+        return item
 
     def create_vpn_connection_route(
         self,
@@ -1109,7 +1290,12 @@ class Connector(OSCCall):
             LoadBalancerPorts=load_balancer_ports,
             **params
         )
-        return deserialize(LoadBalancer, response["LoadBalancer"])
+
+        item = deserialize(LoadBalancer, response["LoadBalancer"])
+
+        item._connection = self
+
+        return item
 
     def delete_load_balancer_policy(
         self, load_balancer_name: str, policy_name: str, dry_run: Optional[bool] = None
@@ -1123,7 +1309,12 @@ class Connector(OSCCall):
             PolicyName=policy_name,
             **params
         )
-        return deserialize(LoadBalancer, response["LoadBalancer"])
+
+        item = deserialize(LoadBalancer, response["LoadBalancer"])
+
+        item._connection = self
+
+        return item
 
     def delete_load_balancer_tags(
         self,
@@ -1220,7 +1411,12 @@ class Connector(OSCCall):
             RouteTableId=route_table_id,
             **params
         )
-        return deserialize(RouteTable, response["RouteTable"])
+
+        item = deserialize(RouteTable, response["RouteTable"])
+
+        item._connection = self
+
+        return item
 
     def delete_route_table(
         self, route_table_id: str, dry_run: Optional[bool] = None
@@ -1287,7 +1483,12 @@ class Connector(OSCCall):
             SecurityGroupId=security_group_id,
             **params
         )
-        return deserialize(SecurityGroup, response["SecurityGroup"])
+
+        item = deserialize(SecurityGroup, response["SecurityGroup"])
+
+        item._connection = self
+
+        return item
 
     def delete_server_certificate(
         self, name: str, dry_run: Optional[bool] = None
@@ -1344,7 +1545,13 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("DeleteVms", VmIds=vm_ids, **params)
-        return [deserialize(VmState, x) for x in response["Vms"]]
+
+        items = [deserialize(VmState, x) for x in response["Vms"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def delete_volume(self, volume_id: str, dry_run: Optional[bool] = None) -> None:
         params = {}
@@ -1457,7 +1664,10 @@ class Connector(OSCCall):
         response = self.make_request(
             "LinkNic", DeviceNumber=device_number, NicId=nic_id, VmId=vm_id, **params
         )
-        return deserialize(str, response["LinkNicId"])
+
+        item = deserialize(str, response["LinkNicId"])
+
+        return item
 
     def link_private_ips(
         self,
@@ -1505,7 +1715,10 @@ class Connector(OSCCall):
         if vm_id is not None:
             params["VmId"] = vm_id
         response = self.make_request("LinkPublicIp", **params)
-        return deserialize(str, response["LinkPublicIpId"])
+
+        item = deserialize(str, response["LinkPublicIpId"])
+
+        return item
 
     def link_route_table(
         self, route_table_id: str, subnet_id: str, dry_run: Optional[bool] = None
@@ -1516,7 +1729,10 @@ class Connector(OSCCall):
         response = self.make_request(
             "LinkRouteTable", RouteTableId=route_table_id, SubnetId=subnet_id, **params
         )
-        return deserialize(str, response["LinkRouteTableId"])
+
+        item = deserialize(str, response["LinkRouteTableId"])
+
+        return item
 
     def link_virtual_gateway(
         self, net_id: str, virtual_gateway_id: str, dry_run: Optional[bool] = None
@@ -1530,7 +1746,12 @@ class Connector(OSCCall):
             VirtualGatewayId=virtual_gateway_id,
             **params
         )
-        return deserialize(NetToVirtualGatewayLink, response["NetToVirtualGatewayLink"])
+
+        item = deserialize(NetToVirtualGatewayLink, response["NetToVirtualGatewayLink"])
+
+        item._connection = self
+
+        return item
 
     def link_volume(
         self,
@@ -1562,28 +1783,48 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadAccessKeys", **params)
-        return [deserialize(AccessKey, x) for x in response["AccessKeys"]]
+
+        items = [deserialize(AccessKey, x) for x in response["AccessKeys"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_accounts(self, dry_run: Optional[bool] = None) -> list[Account]:
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("ReadAccounts", **params)
-        return [deserialize(Account, x) for x in response["Accounts"]]
+
+        items = [deserialize(Account, x) for x in response["Accounts"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_admin_password(self, vm_id: str, dry_run: Optional[bool] = None) -> str:
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("ReadAdminPassword", VmId=vm_id, **params)
-        return deserialize(str, response["AdminPassword"])
+
+        item = deserialize(str, response["AdminPassword"])
+
+        return item
 
     def read_api_access_policy(self, dry_run: Optional[bool] = None) -> ApiAccessPolicy:
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("ReadApiAccessPolicy", **params)
-        return deserialize(ApiAccessPolicy, response["ApiAccessPolicy"])
+
+        item = deserialize(ApiAccessPolicy, response["ApiAccessPolicy"])
+
+        item._connection = self
+
+        return item
 
     def read_api_access_rules(
         self,
@@ -1596,7 +1837,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadApiAccessRules", **params)
-        return [deserialize(ApiAccessRule, x) for x in response["ApiAccessRules"]]
+
+        items = [deserialize(ApiAccessRule, x) for x in response["ApiAccessRules"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_api_logs(
         self,
@@ -1618,7 +1865,13 @@ class Connector(OSCCall):
         if with_ is not None:
             params["With_"] = serialize(with_)
         response = self.make_request("ReadApiLogs", **params)
-        return [deserialize(Log, x) for x in response["Logs"]]
+
+        items = [deserialize(Log, x) for x in response["Logs"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_cas(
         self, dry_run: Optional[bool] = None, filters: Optional["FiltersCa"] = None
@@ -1629,14 +1882,25 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadCas", **params)
-        return [deserialize(Ca, x) for x in response["Cas"]]
+
+        items = [deserialize(Ca, x) for x in response["Cas"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_catalog(self, dry_run: Optional[bool] = None) -> Catalog:
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("ReadCatalog", **params)
-        return deserialize(Catalog, response["Catalog"])
+
+        item = deserialize(Catalog, response["Catalog"])
+
+        item._connection = self
+
+        return item
 
     def read_client_gateways(
         self,
@@ -1649,14 +1913,23 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadClientGateways", **params)
-        return [deserialize(ClientGateway, x) for x in response["ClientGateways"]]
+
+        items = [deserialize(ClientGateway, x) for x in response["ClientGateways"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_console_output(self, vm_id: str, dry_run: Optional[bool] = None) -> str:
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("ReadConsoleOutput", VmId=vm_id, **params)
-        return deserialize(str, response["ConsoleOutput"])
+
+        item = deserialize(str, response["ConsoleOutput"])
+
+        return item
 
     def read_consumption_account(
         self, from_date: str, to_date: str, dry_run: Optional[bool] = None
@@ -1667,9 +1940,15 @@ class Connector(OSCCall):
         response = self.make_request(
             "ReadConsumptionAccount", FromDate=from_date, ToDate=to_date, **params
         )
-        return [
+
+        items = [
             deserialize(ConsumptionEntry, x) for x in response["ConsumptionEntries"]
         ]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_dhcp_options(
         self,
@@ -1682,7 +1961,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadDhcpOptions", **params)
-        return [deserialize(DhcpOptionsSet, x) for x in response["DhcpOptionsSets"]]
+
+        items = [deserialize(DhcpOptionsSet, x) for x in response["DhcpOptionsSets"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_direct_link_interfaces(
         self,
@@ -1695,10 +1980,16 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadDirectLinkInterfaces", **params)
-        return [
+
+        items = [
             deserialize(DirectLinkInterfaces, x)
             for x in response["DirectLinkInterfaces"]
         ]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_direct_links(
         self,
@@ -1711,7 +2002,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadDirectLinks", **params)
-        return [deserialize(DirectLink, x) for x in response["DirectLinks"]]
+
+        items = [deserialize(DirectLink, x) for x in response["DirectLinks"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_flexible_gpu_catalog(
         self, dry_run: Optional[bool] = None
@@ -1720,9 +2017,15 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("ReadFlexibleGpuCatalog", **params)
-        return [
+
+        items = [
             deserialize(FlexibleGpuCatalog, x) for x in response["FlexibleGpuCatalog"]
         ]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_flexible_gpus(
         self,
@@ -1735,7 +2038,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadFlexibleGpus", **params)
-        return [deserialize(FlexibleGpu, x) for x in response["FlexibleGpus"]]
+
+        items = [deserialize(FlexibleGpu, x) for x in response["FlexibleGpus"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_image_export_tasks(
         self,
@@ -1748,7 +2057,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadImageExportTasks", **params)
-        return [deserialize(ImageExportTask, x) for x in response["ImageExportTasks"]]
+
+        items = [deserialize(ImageExportTask, x) for x in response["ImageExportTasks"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_images(
         self, dry_run: Optional[bool] = None, filters: Optional["FiltersImage"] = None
@@ -1759,7 +2074,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadImages", **params)
-        return [deserialize(Image, x) for x in response["Images"]]
+
+        items = [deserialize(Image, x) for x in response["Images"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_internet_services(
         self,
@@ -1772,7 +2093,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadInternetServices", **params)
-        return [deserialize(InternetService, x) for x in response["InternetServices"]]
+
+        items = [deserialize(InternetService, x) for x in response["InternetServices"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_keypairs(
         self, dry_run: Optional[bool] = None, filters: Optional["FiltersKeypair"] = None
@@ -1783,7 +2110,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadKeypairs", **params)
-        return [deserialize(Keypair, x) for x in response["Keypairs"]]
+
+        items = [deserialize(Keypair, x) for x in response["Keypairs"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_listener_rules(
         self,
@@ -1796,7 +2129,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadListenerRules", **params)
-        return [deserialize(ListenerRule, x) for x in response["ListenerRules"]]
+
+        items = [deserialize(ListenerRule, x) for x in response["ListenerRules"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_load_balancer_tags(
         self, load_balancer_names: list[str], dry_run: Optional[bool] = None
@@ -1807,7 +2146,13 @@ class Connector(OSCCall):
         response = self.make_request(
             "ReadLoadBalancerTags", LoadBalancerNames=load_balancer_names, **params
         )
-        return [deserialize(LoadBalancerTag, x) for x in response["Tags"]]
+
+        items = [deserialize(LoadBalancerTag, x) for x in response["Tags"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_load_balancers(
         self,
@@ -1820,14 +2165,26 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadLoadBalancers", **params)
-        return [deserialize(LoadBalancer, x) for x in response["LoadBalancers"]]
+
+        items = [deserialize(LoadBalancer, x) for x in response["LoadBalancers"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_locations(self, dry_run: Optional[bool] = None) -> list[Location]:
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("ReadLocations", **params)
-        return [deserialize(Location, x) for x in response["Locations"]]
+
+        items = [deserialize(Location, x) for x in response["Locations"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_nat_services(
         self,
@@ -1840,7 +2197,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadNatServices", **params)
-        return [deserialize(NatService, x) for x in response["NatServices"]]
+
+        items = [deserialize(NatService, x) for x in response["NatServices"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_net_access_point_services(
         self, dry_run: Optional[bool] = None, filters: Optional["FiltersService"] = None
@@ -1851,7 +2214,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadNetAccessPointServices", **params)
-        return [deserialize(Service, x) for x in response["Services"]]
+
+        items = [deserialize(Service, x) for x in response["Services"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_net_access_points(
         self,
@@ -1864,7 +2233,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadNetAccessPoints", **params)
-        return [deserialize(NetAccessPoint, x) for x in response["NetAccessPoints"]]
+
+        items = [deserialize(NetAccessPoint, x) for x in response["NetAccessPoints"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_net_peerings(
         self,
@@ -1877,7 +2252,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadNetPeerings", **params)
-        return [deserialize(NetPeering, x) for x in response["NetPeerings"]]
+
+        items = [deserialize(NetPeering, x) for x in response["NetPeerings"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_nets(
         self, dry_run: Optional[bool] = None, filters: Optional["FiltersNet"] = None
@@ -1888,7 +2269,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadNets", **params)
-        return [deserialize(Net, x) for x in response["Nets"]]
+
+        items = [deserialize(Net, x) for x in response["Nets"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_nics(
         self, dry_run: Optional[bool] = None, filters: Optional["FiltersNic"] = None
@@ -1899,7 +2286,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadNics", **params)
-        return [deserialize(Nic, x) for x in response["Nics"]]
+
+        items = [deserialize(Nic, x) for x in response["Nics"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_product_types(
         self,
@@ -1912,21 +2305,35 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadProductTypes", **params)
-        return [deserialize(ProductType, x) for x in response["ProductTypes"]]
+
+        items = [deserialize(ProductType, x) for x in response["ProductTypes"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_public_catalog(self, dry_run: Optional[bool] = None) -> Catalog:
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("ReadPublicCatalog", **params)
-        return deserialize(Catalog, response["Catalog"])
+
+        item = deserialize(Catalog, response["Catalog"])
+
+        item._connection = self
+
+        return item
 
     def read_public_ip_ranges(self, dry_run: Optional[bool] = None) -> list[str]:
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("ReadPublicIpRanges", **params)
-        return [deserialize(str, x) for x in response["PublicIps"]]
+
+        items = [deserialize(str, x) for x in response["PublicIps"]]
+
+        return items
 
     def read_public_ips(
         self,
@@ -1939,7 +2346,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadPublicIps", **params)
-        return [deserialize(PublicIp, x) for x in response["PublicIps"]]
+
+        items = [deserialize(PublicIp, x) for x in response["PublicIps"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_quotas(
         self, dry_run: Optional[bool] = None, filters: Optional["FiltersQuota"] = None
@@ -1950,14 +2363,26 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadQuotas", **params)
-        return [deserialize(QuotaTypes, x) for x in response["QuotaTypes"]]
+
+        items = [deserialize(QuotaTypes, x) for x in response["QuotaTypes"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_regions(self, dry_run: Optional[bool] = None) -> list[Region]:
         params = {}
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("ReadRegions", **params)
-        return [deserialize(Region, x) for x in response["Regions"]]
+
+        items = [deserialize(Region, x) for x in response["Regions"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_route_tables(
         self,
@@ -1970,7 +2395,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadRouteTables", **params)
-        return [deserialize(RouteTable, x) for x in response["RouteTables"]]
+
+        items = [deserialize(RouteTable, x) for x in response["RouteTables"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_secret_access_key(
         self, access_key_id: str, dry_run: Optional[bool] = None
@@ -1981,7 +2412,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "ReadSecretAccessKey", AccessKeyId=access_key_id, **params
         )
-        return deserialize(AccessKeySecretKey, response["AccessKey"])
+
+        item = deserialize(AccessKeySecretKey, response["AccessKey"])
+
+        item._connection = self
+
+        return item
 
     def read_security_groups(
         self,
@@ -1994,7 +2430,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadSecurityGroups", **params)
-        return [deserialize(SecurityGroup, x) for x in response["SecurityGroups"]]
+
+        items = [deserialize(SecurityGroup, x) for x in response["SecurityGroups"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_server_certificates(
         self,
@@ -2007,9 +2449,15 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadServerCertificates", **params)
-        return [
+
+        items = [
             deserialize(ServerCertificate, x) for x in response["ServerCertificates"]
         ]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_snapshot_export_tasks(
         self,
@@ -2022,9 +2470,15 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadSnapshotExportTasks", **params)
-        return [
+
+        items = [
             deserialize(SnapshotExportTask, x) for x in response["SnapshotExportTasks"]
         ]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_snapshots(
         self,
@@ -2037,7 +2491,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadSnapshots", **params)
-        return [deserialize(Snapshot, x) for x in response["Snapshots"]]
+
+        items = [deserialize(Snapshot, x) for x in response["Snapshots"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_subnets(
         self, dry_run: Optional[bool] = None, filters: Optional["FiltersSubnet"] = None
@@ -2048,7 +2508,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadSubnets", **params)
-        return [deserialize(Subnet, x) for x in response["Subnets"]]
+
+        items = [deserialize(Subnet, x) for x in response["Subnets"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_subregions(
         self,
@@ -2061,7 +2527,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadSubregions", **params)
-        return [deserialize(Subregion, x) for x in response["Subregions"]]
+
+        items = [deserialize(Subregion, x) for x in response["Subregions"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_tags(
         self, dry_run: Optional[bool] = None, filters: Optional["FiltersTag"] = None
@@ -2072,7 +2544,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadTags", **params)
-        return [deserialize(Tag, x) for x in response["Tags"]]
+
+        items = [deserialize(Tag, x) for x in response["Tags"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_virtual_gateways(
         self,
@@ -2085,7 +2563,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadVirtualGateways", **params)
-        return [deserialize(VirtualGateway, x) for x in response["VirtualGateways"]]
+
+        items = [deserialize(VirtualGateway, x) for x in response["VirtualGateways"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_vm_types(
         self, dry_run: Optional[bool] = None, filters: Optional["FiltersVmType"] = None
@@ -2096,7 +2580,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadVmTypes", **params)
-        return [deserialize(VmType, x) for x in response["VmTypes"]]
+
+        items = [deserialize(VmType, x) for x in response["VmTypes"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_vms(
         self, dry_run: Optional[bool] = None, filters: Optional["FiltersVm"] = None
@@ -2107,7 +2597,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadVms", **params)
-        return [deserialize(Vm, x) for x in response["Vms"]]
+
+        items = [deserialize(Vm, x) for x in response["Vms"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_vms_health(
         self,
@@ -2123,7 +2619,13 @@ class Connector(OSCCall):
         response = self.make_request(
             "ReadVmsHealth", LoadBalancerName=load_balancer_name, **params
         )
-        return [deserialize(BackendVmHealth, x) for x in response["BackendVmHealth"]]
+
+        items = [deserialize(BackendVmHealth, x) for x in response["BackendVmHealth"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_vms_state(
         self,
@@ -2139,7 +2641,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadVmsState", **params)
-        return [deserialize(VmStates, x) for x in response["VmStates"]]
+
+        items = [deserialize(VmStates, x) for x in response["VmStates"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_volumes(
         self, dry_run: Optional[bool] = None, filters: Optional["FiltersVolume"] = None
@@ -2150,7 +2658,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadVolumes", **params)
-        return [deserialize(Volume, x) for x in response["Volumes"]]
+
+        items = [deserialize(Volume, x) for x in response["Volumes"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def read_vpn_connections(
         self,
@@ -2163,7 +2677,13 @@ class Connector(OSCCall):
         if filters is not None:
             params["Filters"] = serialize(filters)
         response = self.make_request("ReadVpnConnections", **params)
-        return [deserialize(VpnConnection, x) for x in response["VpnConnections"]]
+
+        items = [deserialize(VpnConnection, x) for x in response["VpnConnections"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def reboot_vms(self, vm_ids: list[str], dry_run: Optional[bool] = None) -> None:
         params = {}
@@ -2227,7 +2747,13 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("StartVms", VmIds=vm_ids, **params)
-        return [deserialize(VmState, x) for x in response["Vms"]]
+
+        items = [deserialize(VmState, x) for x in response["Vms"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def stop_vms(
         self,
@@ -2241,7 +2767,13 @@ class Connector(OSCCall):
         if force_stop is not None:
             params["ForceStop"] = force_stop
         response = self.make_request("StopVms", VmIds=vm_ids, **params)
-        return [deserialize(VmState, x) for x in response["Vms"]]
+
+        items = [deserialize(VmState, x) for x in response["Vms"]]
+
+        for item in items:
+            item._connection = self
+
+        return items
 
     def unlink_flexible_gpu(
         self, flexible_gpu_id: str, dry_run: Optional[bool] = None
@@ -2377,7 +2909,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "UpdateAccessKey", AccessKeyId=access_key_id, State=state, **params
         )
-        return deserialize(AccessKey, response["AccessKey"])
+
+        item = deserialize(AccessKey, response["AccessKey"])
+
+        item._connection = self
+
+        return item
 
     def update_account(
         self,
@@ -2426,7 +2963,12 @@ class Connector(OSCCall):
         if zip_code is not None:
             params["ZipCode"] = zip_code
         response = self.make_request("UpdateAccount", **params)
-        return deserialize(Account, response["Account"])
+
+        item = deserialize(Account, response["Account"])
+
+        item._connection = self
+
+        return item
 
     def update_api_access_policy(
         self,
@@ -2443,7 +2985,12 @@ class Connector(OSCCall):
             RequireTrustedEnv=require_trusted_env,
             **params
         )
-        return deserialize(ApiAccessPolicy, response["ApiAccessPolicy"])
+
+        item = deserialize(ApiAccessPolicy, response["ApiAccessPolicy"])
+
+        item._connection = self
+
+        return item
 
     def update_api_access_rule(
         self,
@@ -2468,7 +3015,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "UpdateApiAccessRule", ApiAccessRuleId=api_access_rule_id, **params
         )
-        return deserialize(ApiAccessRule, response["ApiAccessRule"])
+
+        item = deserialize(ApiAccessRule, response["ApiAccessRule"])
+
+        item._connection = self
+
+        return item
 
     def update_ca(
         self,
@@ -2482,7 +3034,12 @@ class Connector(OSCCall):
         if dry_run is not None:
             params["DryRun"] = dry_run
         response = self.make_request("UpdateCa", CaId=ca_id, **params)
-        return deserialize(Ca, response["Ca"])
+
+        item = deserialize(Ca, response["Ca"])
+
+        item._connection = self
+
+        return item
 
     def update_flexible_gpu(
         self,
@@ -2498,7 +3055,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "UpdateFlexibleGpu", FlexibleGpuId=flexible_gpu_id, **params
         )
-        return deserialize(FlexibleGpu, response["FlexibleGpu"])
+
+        item = deserialize(FlexibleGpu, response["FlexibleGpu"])
+
+        item._connection = self
+
+        return item
 
     def update_image(
         self,
@@ -2515,7 +3077,12 @@ class Connector(OSCCall):
             PermissionsToLaunch=serialize(permissions_to_launch),
             **params
         )
-        return deserialize(Image, response["Image"])
+
+        item = deserialize(Image, response["Image"])
+
+        item._connection = self
+
+        return item
 
     def update_listener_rule(
         self,
@@ -2534,7 +3101,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "UpdateListenerRule", ListenerRuleName=listener_rule_name, **params
         )
-        return deserialize(ListenerRule, response["ListenerRule"])
+
+        item = deserialize(ListenerRule, response["ListenerRule"])
+
+        item._connection = self
+
+        return item
 
     def update_load_balancer(
         self,
@@ -2568,7 +3140,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "UpdateLoadBalancer", LoadBalancerName=load_balancer_name, **params
         )
-        return deserialize(LoadBalancer, response["LoadBalancer"])
+
+        item = deserialize(LoadBalancer, response["LoadBalancer"])
+
+        item._connection = self
+
+        return item
 
     def update_net(
         self, dhcp_options_set_id: str, net_id: str, dry_run: Optional[bool] = None
@@ -2579,7 +3156,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "UpdateNet", DhcpOptionsSetId=dhcp_options_set_id, NetId=net_id, **params
         )
-        return deserialize(Net, response["Net"])
+
+        item = deserialize(Net, response["Net"])
+
+        item._connection = self
+
+        return item
 
     def update_net_access_point(
         self,
@@ -2598,7 +3180,12 @@ class Connector(OSCCall):
         response = self.make_request(
             "UpdateNetAccessPoint", NetAccessPointId=net_access_point_id, **params
         )
-        return deserialize(NetAccessPoint, response["NetAccessPoint"])
+
+        item = deserialize(NetAccessPoint, response["NetAccessPoint"])
+
+        item._connection = self
+
+        return item
 
     def update_nic(
         self,
@@ -2618,7 +3205,12 @@ class Connector(OSCCall):
         if security_group_ids is not None:
             params["SecurityGroupIds"] = security_group_ids
         response = self.make_request("UpdateNic", NicId=nic_id, **params)
-        return deserialize(Nic, response["Nic"])
+
+        item = deserialize(Nic, response["Nic"])
+
+        item._connection = self
+
+        return item
 
     def update_route(
         self,
@@ -2650,7 +3242,12 @@ class Connector(OSCCall):
             RouteTableId=route_table_id,
             **params
         )
-        return deserialize(RouteTable, response["RouteTable"])
+
+        item = deserialize(RouteTable, response["RouteTable"])
+
+        item._connection = self
+
+        return item
 
     def update_route_propagation(
         self,
@@ -2669,7 +3266,12 @@ class Connector(OSCCall):
             VirtualGatewayId=virtual_gateway_id,
             **params
         )
-        return deserialize(RouteTable, response["RouteTable"])
+
+        item = deserialize(RouteTable, response["RouteTable"])
+
+        item._connection = self
+
+        return item
 
     def update_server_certificate(
         self,
@@ -2686,7 +3288,12 @@ class Connector(OSCCall):
         if new_path is not None:
             params["NewPath"] = new_path
         response = self.make_request("UpdateServerCertificate", Name=name, **params)
-        return deserialize(ServerCertificate, response["ServerCertificate"])
+
+        item = deserialize(ServerCertificate, response["ServerCertificate"])
+
+        item._connection = self
+
+        return item
 
     def update_snapshot(
         self,
@@ -2703,7 +3310,12 @@ class Connector(OSCCall):
             SnapshotId=snapshot_id,
             **params
         )
-        return deserialize(Snapshot, response["Snapshot"])
+
+        item = deserialize(Snapshot, response["Snapshot"])
+
+        item._connection = self
+
+        return item
 
     def update_subnet(
         self,
@@ -2720,7 +3332,12 @@ class Connector(OSCCall):
             SubnetId=subnet_id,
             **params
         )
-        return deserialize(Subnet, response["Subnet"])
+
+        item = deserialize(Subnet, response["Subnet"])
+
+        item._connection = self
+
+        return item
 
     def update_vm(
         self,
@@ -2761,7 +3378,12 @@ class Connector(OSCCall):
         if vm_type is not None:
             params["VmType"] = vm_type
         response = self.make_request("UpdateVm", VmId=vm_id, **params)
-        return deserialize(Vm, response["Vm"])
+
+        item = deserialize(Vm, response["Vm"])
+
+        item._connection = self
+
+        return item
 
     def update_volume(
         self,
@@ -2781,7 +3403,12 @@ class Connector(OSCCall):
         if volume_type is not None:
             params["VolumeType"] = volume_type
         response = self.make_request("UpdateVolume", VolumeId=volume_id, **params)
-        return deserialize(Volume, response["Volume"])
+
+        item = deserialize(Volume, response["Volume"])
+
+        item._connection = self
+
+        return item
 
     def update_vpn_connection(
         self,
@@ -2803,4 +3430,9 @@ class Connector(OSCCall):
         response = self.make_request(
             "UpdateVpnConnection", VpnConnectionId=vpn_connection_id, **params
         )
-        return deserialize(VpnConnection, response["VpnConnection"])
+
+        item = deserialize(VpnConnection, response["VpnConnection"])
+
+        item._connection = self
+
+        return item

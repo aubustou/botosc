@@ -2,7 +2,7 @@ default_language_version:
     python: python3.9
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.0.1
+    rev: v4.2.0
     hooks:
     -   id: check-docstring-first
     -   id: check-json
@@ -14,7 +14,7 @@ repos:
     -   id: requirements-txt-fixer
     -   id: trailing-whitespace
 -   repo: https://github.com/pre-commit/mirrors-isort
-    rev: v5.5.5
+    rev: v5.10.1
     hooks:
     -   id: isort
 -   repo: https://github.com/lovesegfault/beautysh
@@ -22,6 +22,6 @@ repos:
     hooks:
     -   id: beautysh
 -   repo: https://github.com/psf/black
-    rev: 21.9b0
+    rev: 22.3.0
     hooks:
     -   id: black
