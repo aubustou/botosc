@@ -35,3 +35,13 @@ def test_reads(connection: Connector, call: str):
         # Pass when a call requires arguments
         logging.warning(e)
         pytest.skip()
+
+
+def test_read_vms(connection: Connector):
+    vms = connection.read_vms()
+    assert vms
+    vm = vms[0]
+    assert vm.connection is connection
+    assert vm.tutu == "toto"
+    image_details = vm.get_image_details()
+    assert image_details or image_details is None

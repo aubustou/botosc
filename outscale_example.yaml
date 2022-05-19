@@ -3006,9 +3006,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - AccessKeyIds
-      - States
       type: object
     FiltersApiAccessRule:
       additionalProperties: false
@@ -3039,12 +3036,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - ApiAccessRuleIds
-      - CaIds
-      - Cns
-      - Descriptions
-      - IpRanges
       type: object
     FiltersApiLog:
       additionalProperties: false
@@ -3098,16 +3089,6 @@ components:
           items:
             type: integer
           type: array
-      required:
-      - QueryAccessKeys
-      - QueryApiNames
-      - QueryCallNames
-      - QueryDateAfter
-      - QueryDateBefore
-      - QueryIpAddresses
-      - QueryUserAgents
-      - RequestIds
-      - ResponseStatusCodes
       type: object
     FiltersCa:
       additionalProperties: false
@@ -3128,10 +3109,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - CaFingerprints
-      - CaIds
-      - Descriptions
       type: object
     FiltersClientGateway:
       additionalProperties: false
@@ -3181,15 +3158,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - BgpAsns
-      - ClientGatewayIds
-      - ConnectionTypes
-      - PublicIps
-      - States
-      - TagKeys
-      - TagValues
-      - Tags
       type: object
     FiltersDhcpOptions:
       additionalProperties: false
@@ -3236,15 +3204,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - Default
-      - DhcpOptionsSetIds
-      - DomainNameServers
-      - DomainNames
-      - NtpServers
-      - TagKeys
-      - TagValues
-      - Tags
       type: object
     FiltersDirectLink:
       additionalProperties: false
@@ -3255,8 +3214,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - DirectLinkIds
       type: object
     FiltersDirectLinkInterface:
       additionalProperties: false
@@ -3272,9 +3229,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - DirectLinkIds
-      - DirectLinkInterfaceIds
       type: object
     FiltersExportTask:
       additionalProperties: false
@@ -3285,8 +3239,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - TaskIds
       type: object
     FiltersFlexibleGpu:
       additionalProperties: false
@@ -3328,14 +3280,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - DeleteOnVmDeletion
-      - FlexibleGpuIds
-      - Generations
-      - ModelNames
-      - States
-      - SubregionNames
-      - VmIds
       type: object
     FiltersImage:
       additionalProperties: false
@@ -3458,30 +3402,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - AccountAliases
-      - AccountIds
-      - Architectures
-      - BlockDeviceMappingDeleteOnVmDeletion
-      - BlockDeviceMappingDeviceNames
-      - BlockDeviceMappingSnapshotIds
-      - BlockDeviceMappingVolumeSizes
-      - BlockDeviceMappingVolumeTypes
-      - Descriptions
-      - FileLocations
-      - Hypervisors
-      - ImageIds
-      - ImageNames
-      - PermissionsToLaunchAccountIds
-      - PermissionsToLaunchGlobalPermission
-      - ProductCodes
-      - RootDeviceNames
-      - RootDeviceTypes
-      - States
-      - TagKeys
-      - TagValues
-      - Tags
-      - VirtualizationTypes
       type: object
     FiltersInternetService:
       additionalProperties: false
@@ -3520,13 +3440,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - InternetServiceIds
-      - LinkNetIds
-      - LinkStates
-      - TagKeys
-      - TagValues
-      - Tags
       type: object
     FiltersKeypair:
       additionalProperties: false
@@ -3542,9 +3455,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - KeypairFingerprints
-      - KeypairNames
       type: object
     FiltersListenerRule:
       additionalProperties: false
@@ -3555,8 +3465,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - ListenerRuleNames
       type: object
     FiltersLoadBalancer:
       additionalProperties: false
@@ -3567,8 +3475,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - LoadBalancerNames
       type: object
     FiltersNatService:
       additionalProperties: false
@@ -3611,14 +3517,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - NatServiceIds
-      - NetIds
-      - States
-      - SubnetIds
-      - TagKeys
-      - TagValues
-      - Tags
       type: object
     FiltersNet:
       additionalProperties: false
@@ -3664,15 +3562,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - DhcpOptionsSetIds
-      - IpRanges
-      - IsDefault
-      - NetIds
-      - States
-      - TagKeys
-      - TagValues
-      - Tags
       type: object
     FiltersNetAccessPoint:
       additionalProperties: false
@@ -3715,14 +3604,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - NetAccessPointIds
-      - NetIds
-      - ServiceNames
-      - States
-      - TagKeys
-      - TagValues
-      - Tags
       type: object
     FiltersNetPeering:
       additionalProperties: false
@@ -3792,19 +3673,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - AccepterNetAccountIds
-      - AccepterNetIpRanges
-      - AccepterNetNetIds
-      - NetPeeringIds
-      - SourceNetAccountIds
-      - SourceNetIpRanges
-      - SourceNetNetIds
-      - StateMessages
-      - StateNames
-      - TagKeys
-      - TagValues
-      - Tags
       type: object
     FiltersNic:
       additionalProperties: false
@@ -3953,35 +3821,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - Descriptions
-      - IsSourceDestCheck
-      - LinkNicDeleteOnVmDeletion
-      - LinkNicDeviceNumbers
-      - LinkNicLinkNicIds
-      - LinkNicStates
-      - LinkNicVmAccountIds
-      - LinkNicVmIds
-      - LinkPublicIpAccountIds
-      - LinkPublicIpLinkPublicIpIds
-      - LinkPublicIpPublicIpIds
-      - LinkPublicIpPublicIps
-      - MacAddresses
-      - NetIds
-      - NicIds
-      - PrivateDnsNames
-      - PrivateIpsLinkPublicIpAccountIds
-      - PrivateIpsLinkPublicIpPublicIps
-      - PrivateIpsPrimaryIp
-      - PrivateIpsPrivateIps
-      - SecurityGroupIds
-      - SecurityGroupNames
-      - States
-      - SubnetIds
-      - SubregionNames
-      - TagKeys
-      - TagValues
-      - Tags
       type: object
     FiltersProductType:
       additionalProperties: false
@@ -3992,8 +3831,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - ProductTypeIds
       type: object
     FiltersPublicIp:
       additionalProperties: false
@@ -4057,18 +3894,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - LinkPublicIpIds
-      - NicAccountIds
-      - NicIds
-      - Placements
-      - PrivateIps
-      - PublicIpIds
-      - PublicIps
-      - TagKeys
-      - TagValues
-      - Tags
-      - VmIds
       type: object
     FiltersQuota:
       additionalProperties: false
@@ -4095,11 +3920,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - Collections
-      - QuotaNames
-      - QuotaTypes
-      - ShortDescriptions
       type: object
     FiltersRouteTable:
       additionalProperties: false
@@ -4192,24 +4012,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - LinkRouteTableIds
-      - LinkRouteTableLinkRouteTableIds
-      - LinkRouteTableMain
-      - LinkSubnetIds
-      - NetIds
-      - RouteCreationMethods
-      - RouteDestinationIpRanges
-      - RouteDestinationServiceIds
-      - RouteGatewayIds
-      - RouteNatServiceIds
-      - RouteNetPeeringIds
-      - RouteStates
-      - RouteTableIds
-      - RouteVmIds
-      - TagKeys
-      - TagValues
-      - Tags
       type: object
     FiltersSecurityGroup:
       additionalProperties: false
@@ -4335,29 +4137,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - AccountIds
-      - Descriptions
-      - InboundRuleAccountIds
-      - InboundRuleFromPortRanges
-      - InboundRuleIpRanges
-      - InboundRuleProtocols
-      - InboundRuleSecurityGroupIds
-      - InboundRuleSecurityGroupNames
-      - InboundRuleToPortRanges
-      - NetIds
-      - OutboundRuleAccountIds
-      - OutboundRuleFromPortRanges
-      - OutboundRuleIpRanges
-      - OutboundRuleProtocols
-      - OutboundRuleSecurityGroupIds
-      - OutboundRuleSecurityGroupNames
-      - OutboundRuleToPortRanges
-      - SecurityGroupIds
-      - SecurityGroupNames
-      - TagKeys
-      - TagValues
-      - Tags
       type: object
     FiltersServerCertificate:
       additionalProperties: false
@@ -4368,8 +4147,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - Paths
       type: object
     FiltersService:
       additionalProperties: false
@@ -4385,9 +4162,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - ServiceIds
-      - ServiceNames
       type: object
     FiltersSnapshot:
       additionalProperties: false
@@ -4460,20 +4234,6 @@ components:
           items:
             type: integer
           type: array
-      required:
-      - AccountAliases
-      - AccountIds
-      - Descriptions
-      - PermissionsToCreateVolumeAccountIds
-      - PermissionsToCreateVolumeGlobalPermission
-      - Progresses
-      - SnapshotIds
-      - States
-      - TagKeys
-      - TagValues
-      - Tags
-      - VolumeIds
-      - VolumeSizes
       type: object
     FiltersSubnet:
       additionalProperties: false
@@ -4526,16 +4286,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - AvailableIpsCounts
-      - IpRanges
-      - NetIds
-      - States
-      - SubnetIds
-      - SubregionNames
-      - TagKeys
-      - TagValues
-      - Tags
       type: object
     FiltersSubregion:
       additionalProperties: false
@@ -4546,8 +4296,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - SubregionNames
       type: object
     FiltersTag:
       additionalProperties: false
@@ -4582,11 +4330,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - Keys
-      - ResourceIds
-      - ResourceTypes
-      - Values
       type: object
     FiltersVirtualGateway:
       additionalProperties: false
@@ -4635,15 +4378,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - ConnectionTypes
-      - LinkNetIds
-      - LinkStates
-      - States
-      - TagKeys
-      - TagValues
-      - Tags
-      - VirtualGatewayIds
       type: object
     FiltersVm:
       additionalProperties: false
@@ -4670,11 +4404,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - TagKeys
-      - TagValues
-      - Tags
-      - VmIds
       type: object
     FiltersVmType:
       additionalProperties: false
@@ -4711,13 +4440,6 @@ components:
           items:
             type: integer
           type: array
-      required:
-      - BsuOptimized
-      - MemorySizes
-      - VcoreCounts
-      - VmTypeNames
-      - VolumeCounts
-      - VolumeSizes
       type: object
     FiltersVmsState:
       additionalProperties: false
@@ -4761,14 +4483,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - MaintenanceEventCodes
-      - MaintenanceEventDescriptions
-      - MaintenanceEventsNotAfter
-      - MaintenanceEventsNotBefore
-      - SubregionNames
-      - VmIds
-      - VmStates
       type: object
     FiltersVolume:
       additionalProperties: false
@@ -4853,22 +4567,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - CreationDates
-      - LinkVolumeDeleteOnVmDeletion
-      - LinkVolumeDeviceNames
-      - LinkVolumeLinkDates
-      - LinkVolumeLinkStates
-      - LinkVolumeVmIds
-      - SnapshotIds
-      - SubregionNames
-      - TagKeys
-      - TagValues
-      - Tags
-      - VolumeIds
-      - VolumeSizes
-      - VolumeStates
-      - VolumeTypes
       type: object
     FiltersVpnConnection:
       additionalProperties: false
@@ -4933,18 +4631,6 @@ components:
           items:
             type: string
           type: array
-      required:
-      - BgpAsns
-      - ClientGatewayIds
-      - ConnectionTypes
-      - RouteDestinationIpRanges
-      - States
-      - StaticRoutesOnly
-      - TagKeys
-      - TagValues
-      - Tags
-      - VirtualGatewayIds
-      - VpnConnectionIds
       type: object
     FlexibleGpu:
       additionalProperties: false
