@@ -247,7 +247,6 @@ components:
       - ApiAccessRuleId
       - CaIds
       - Cns
-      - Description
       - IpRanges
       type: object
     ApplicationStickyCookiePolicy:
@@ -464,7 +463,6 @@ components:
       required:
       - CaFingerprint
       - CaId
-      - Description
       type: object
     Catalog:
       additionalProperties: false
