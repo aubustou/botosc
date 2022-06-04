@@ -14,266 +14,266 @@ from .utils import to_camelcase
 @alias(to_camelcase)
 @dataclass
 class AccepterNet(BaseObject):
-    account_id: Optional[str] = None
-    ip_range: Optional[str] = None
-    net_id: Optional[str] = None
+    account_id: str
+    ip_range: str
+    net_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class AccessKey(BaseObject):
-    access_key_id: Optional[str] = None
-    creation_date: Optional[str] = None
+    access_key_id: str
+    creation_date: str
+    last_modification_date: str
+    state: str
     expiration_date: Optional[str] = None
-    last_modification_date: Optional[str] = None
-    state: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class AccessKeySecretKey(BaseObject):
-    access_key_id: Optional[str] = None
-    creation_date: Optional[str] = None
-    expiration_date: Optional[str] = None
-    last_modification_date: Optional[str] = None
-    secret_key: Optional[str] = None
-    state: Optional[str] = None
+    access_key_id: str
+    creation_date: str
+    expiration_date: str
+    last_modification_date: str
+    secret_key: str
+    state: str
 
 
 @alias(to_camelcase)
 @dataclass
 class AccessLog(BaseObject):
-    is_enabled: Optional[bool] = None
-    osu_bucket_name: Optional[str] = None
-    osu_bucket_prefix: Optional[str] = None
-    publication_interval: Optional[int] = None
+    is_enabled: bool
+    osu_bucket_name: str
+    osu_bucket_prefix: str
+    publication_interval: int
 
 
 @alias(to_camelcase)
 @dataclass
 class Account(BaseObject):
-    account_id: Optional[str] = None
-    additional_emails: Optional[list[str]] = None
-    city: Optional[str] = None
-    company_name: Optional[str] = None
-    country: Optional[str] = None
+    account_id: str
+    additional_emails: list[str]
+    city: str
+    company_name: str
+    country: str
+    email: str
+    first_name: str
+    last_name: str
+    zip_code: str
     customer_id: Optional[str] = None
-    email: Optional[str] = None
-    first_name: Optional[str] = None
     job_title: Optional[str] = None
-    last_name: Optional[str] = None
     mobile_number: Optional[str] = None
     phone_number: Optional[str] = None
     state_province: Optional[str] = None
     vat_number: Optional[str] = None
-    zip_code: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class ApiAccessPolicy(BaseObject):
-    max_access_key_expiration_seconds: Optional[int] = None
-    require_trusted_env: Optional[bool] = None
+    max_access_key_expiration_seconds: int
+    require_trusted_env: bool
 
 
 @alias(to_camelcase)
 @dataclass
 class ApiAccessRule(BaseObject):
-    api_access_rule_id: Optional[str] = None
-    ca_ids: Optional[list[str]] = None
-    cns: Optional[list[str]] = None
+    api_access_rule_id: str
+    ca_ids: list[str]
+    cns: list[str]
+    ip_ranges: list[str]
     description: Optional[str] = None
-    ip_ranges: Optional[list[str]] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class ApplicationStickyCookiePolicy(BaseObject):
-    cookie_name: Optional[str] = None
-    policy_name: Optional[str] = None
+    cookie_name: str
+    policy_name: str
 
 
 @alias(to_camelcase)
 @dataclass
 class BackendVmHealth(BaseObject):
-    description: Optional[str] = None
-    state: Optional[str] = None
-    state_reason: Optional[str] = None
-    vm_id: Optional[str] = None
+    description: str
+    state: str
+    state_reason: str
+    vm_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class BlockDeviceMappingCreated(BaseObject):
-    bsu: Optional[BsuCreated] = None
-    device_name: Optional[str] = None
+    bsu: BsuCreated
+    device_name: str
 
 
 @alias(to_camelcase)
 @dataclass
 class BlockDeviceMappingImage(BaseObject):
-    bsu: Optional[BsuToCreate] = None
-    device_name: Optional[str] = None
+    bsu: BsuToCreate
+    device_name: str
     virtual_device_name: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class BlockDeviceMappingVmCreation(BaseObject):
-    bsu: Optional[BsuToCreate] = None
-    device_name: Optional[str] = None
-    no_device: Optional[str] = None
-    virtual_device_name: Optional[str] = None
+    bsu: BsuToCreate
+    device_name: str
+    no_device: str
+    virtual_device_name: str
 
 
 @alias(to_camelcase)
 @dataclass
 class BlockDeviceMappingVmUpdate(BaseObject):
-    bsu: Optional[BsuToUpdateVm] = None
-    device_name: Optional[str] = None
-    no_device: Optional[str] = None
-    virtual_device_name: Optional[str] = None
+    bsu: BsuToUpdateVm
+    device_name: str
+    no_device: str
+    virtual_device_name: str
 
 
 @alias(to_camelcase)
 @dataclass
 class BsuCreated(BaseObject):
-    delete_on_vm_deletion: Optional[bool] = None
-    link_date: Optional[str] = None
-    state: Optional[str] = None
-    volume_id: Optional[str] = None
+    delete_on_vm_deletion: bool
+    link_date: str
+    state: str
+    volume_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class BsuToCreate(BaseObject):
-    delete_on_vm_deletion: Optional[bool] = None
+    delete_on_vm_deletion: bool
+    snapshot_id: str
+    volume_size: int
+    volume_type: str
     iops: Optional[int] = None
-    snapshot_id: Optional[str] = None
-    volume_size: Optional[int] = None
-    volume_type: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class BsuToUpdateVm(BaseObject):
-    delete_on_vm_deletion: Optional[bool] = None
-    volume_id: Optional[str] = None
+    delete_on_vm_deletion: bool
+    volume_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class Ca(BaseObject):
-    ca_fingerprint: Optional[str] = None
-    ca_id: Optional[str] = None
+    ca_fingerprint: str
+    ca_id: str
     description: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class Catalog(BaseObject):
-    entries: Optional[list[CatalogEntry]] = None
+    entries: list[CatalogEntry]
 
 
 @alias(to_camelcase)
 @dataclass
 class CatalogEntry(BaseObject):
-    category: Optional[str] = None
+    category: str
+    operation: str
+    service: str
+    subregion_name: str
+    title: str
+    type: str
+    unit_price: float
     flags: Optional[str] = None
-    operation: Optional[str] = None
-    service: Optional[str] = None
-    subregion_name: Optional[str] = None
-    title: Optional[str] = None
-    type: Optional[str] = None
-    unit_price: Optional[float] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class ClientGateway(BaseObject):
-    bgp_asn: Optional[int] = None
-    client_gateway_id: Optional[str] = None
-    connection_type: Optional[str] = None
-    public_ip: Optional[str] = None
-    state: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
+    bgp_asn: int
+    client_gateway_id: str
+    connection_type: str
+    public_ip: str
+    state: str
+    tags: list[ResourceTag]
 
 
 @alias(to_camelcase)
 @dataclass
 class ConsumptionEntry(BaseObject):
-    account_id: Optional[str] = None
-    category: Optional[str] = None
-    from_date: Optional[str] = None
-    operation: Optional[str] = None
-    paying_account_id: Optional[str] = None
-    service: Optional[str] = None
-    subregion_name: Optional[str] = None
-    title: Optional[str] = None
-    to_date: Optional[str] = None
-    type: Optional[str] = None
-    value: Optional[int] = None
+    account_id: str
+    category: str
+    from_date: str
+    operation: str
+    paying_account_id: str
+    service: str
+    subregion_name: str
+    title: str
+    to_date: str
+    type: str
+    value: int
 
 
 @alias(to_camelcase)
 @dataclass
 class DhcpOptionsSet(BaseObject):
-    default: Optional[bool] = None
-    dhcp_options_set_id: Optional[str] = None
-    domain_name: Optional[str] = None
-    domain_name_servers: Optional[list[str]] = None
+    default: bool
+    dhcp_options_set_id: str
+    domain_name: str
+    domain_name_servers: list[str]
+    tags: list[ResourceTag]
     ntp_servers: Optional[list[str]] = None
-    tags: Optional[list[ResourceTag]] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class DirectLink(BaseObject):
-    account_id: Optional[str] = None
-    bandwidth: Optional[str] = None
-    direct_link_id: Optional[str] = None
-    direct_link_name: Optional[str] = None
-    location: Optional[str] = None
-    region_name: Optional[str] = None
-    state: Optional[str] = None
+    account_id: str
+    bandwidth: str
+    direct_link_id: str
+    direct_link_name: str
+    location: str
+    region_name: str
+    state: str
 
 
 @alias(to_camelcase)
 @dataclass
 class DirectLinkInterface(BaseObject):
     bgp_asn: int
+    bgp_key: str
+    client_private_ip: str
     direct_link_interface_name: str
+    outscale_private_ip: str
     virtual_gateway_id: str
     vlan: int
-    bgp_key: Optional[str] = None
-    client_private_ip: Optional[str] = None
-    outscale_private_ip: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class DirectLinkInterfaces(BaseObject):
-    account_id: Optional[str] = None
-    bgp_asn: Optional[int] = None
-    bgp_key: Optional[str] = None
-    client_private_ip: Optional[str] = None
-    direct_link_id: Optional[str] = None
-    direct_link_interface_id: Optional[str] = None
-    direct_link_interface_name: Optional[str] = None
-    interface_type: Optional[str] = None
-    location: Optional[str] = None
-    outscale_private_ip: Optional[str] = None
-    state: Optional[str] = None
-    virtual_gateway_id: Optional[str] = None
-    vlan: Optional[int] = None
+    account_id: str
+    bgp_asn: int
+    bgp_key: str
+    client_private_ip: str
+    direct_link_id: str
+    direct_link_interface_id: str
+    direct_link_interface_name: str
+    interface_type: str
+    location: str
+    outscale_private_ip: str
+    state: str
+    virtual_gateway_id: str
+    vlan: int
 
 
 @alias(to_camelcase)
 @dataclass
 class Errors(BaseObject):
-    code: Optional[str] = None
-    details: Optional[str] = None
-    type: Optional[str] = None
+    code: str
+    details: str
+    type: str
 
 
 @alias(to_camelcase)
@@ -741,23 +741,23 @@ class FiltersVpnConnection(BaseObject):
 @alias(to_camelcase)
 @dataclass
 class FlexibleGpu(BaseObject):
-    delete_on_vm_deletion: Optional[bool] = None
-    flexible_gpu_id: Optional[str] = None
-    generation: Optional[str] = None
-    model_name: Optional[str] = None
-    state: Optional[str] = None
-    subregion_name: Optional[str] = None
+    delete_on_vm_deletion: bool
+    flexible_gpu_id: str
+    generation: str
+    model_name: str
+    state: str
+    subregion_name: str
     vm_id: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class FlexibleGpuCatalog(BaseObject):
-    generations: Optional[list[str]] = None
-    max_cpu: Optional[int] = None
-    max_ram: Optional[int] = None
-    model_name: Optional[str] = None
-    v_ram: Optional[int] = None
+    generations: list[str]
+    max_cpu: int
+    max_ram: int
+    model_name: str
+    v_ram: int
 
 
 @alias(to_camelcase)
@@ -765,203 +765,199 @@ class FlexibleGpuCatalog(BaseObject):
 class HealthCheck(BaseObject):
     check_interval: int
     healthy_threshold: int
+    path: str
     port: int
     protocol: str
     timeout: int
     unhealthy_threshold: int
-    path: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class Image(BaseObject):
+    account_id: str
+    architecture: str
+    block_device_mappings: list[BlockDeviceMappingImage]
+    creation_date: str
+    description: str
+    file_location: str
+    image_id: str
+    image_name: str
+    image_type: str
+    permissions_to_launch: PermissionsOnResource
+    product_codes: list[str]
+    root_device_name: str
+    root_device_type: str
+    state: str
+    state_comment: StateComment
+    tags: list[ResourceTag]
     account_alias: Optional[str] = None
-    account_id: Optional[str] = None
-    architecture: Optional[str] = None
-    block_device_mappings: Optional[list[BlockDeviceMappingImage]] = None
-    creation_date: Optional[str] = None
-    description: Optional[str] = None
-    file_location: Optional[str] = None
-    image_id: Optional[str] = None
-    image_name: Optional[str] = None
-    image_type: Optional[str] = None
-    permissions_to_launch: Optional[PermissionsOnResource] = None
-    product_codes: Optional[list[str]] = None
-    root_device_name: Optional[str] = None
-    root_device_type: Optional[str] = None
-    state: Optional[str] = None
-    state_comment: Optional[StateComment] = None
-    tags: Optional[list[ResourceTag]] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class ImageExportTask(BaseObject):
-    comment: Optional[str] = None
-    image_id: Optional[str] = None
-    osu_export: Optional[OsuExportImageExportTask] = None
-    progress: Optional[int] = None
-    state: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
-    task_id: Optional[str] = None
+    comment: str
+    image_id: str
+    osu_export: OsuExportImageExportTask
+    progress: int
+    state: str
+    tags: list[ResourceTag]
+    task_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class InternetService(BaseObject):
-    internet_service_id: Optional[str] = None
-    net_id: Optional[str] = None
-    state: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
+    internet_service_id: str
+    net_id: str
+    state: str
+    tags: list[ResourceTag]
 
 
 @alias(to_camelcase)
 @dataclass
 class Keypair(BaseObject):
-    keypair_fingerprint: Optional[str] = None
-    keypair_name: Optional[str] = None
+    keypair_fingerprint: str
+    keypair_name: str
 
 
 @alias(to_camelcase)
 @dataclass
 class KeypairCreated(BaseObject):
-    keypair_fingerprint: Optional[str] = None
-    keypair_name: Optional[str] = None
-    private_key: Optional[str] = None
+    keypair_fingerprint: str
+    keypair_name: str
+    private_key: str
 
 
 @alias(to_camelcase)
 @dataclass
 class LinkNic(BaseObject):
-    delete_on_vm_deletion: Optional[bool] = None
-    device_number: Optional[int] = None
-    link_nic_id: Optional[str] = None
-    state: Optional[str] = None
-    vm_account_id: Optional[str] = None
-    vm_id: Optional[str] = None
+    delete_on_vm_deletion: bool
+    device_number: int
+    link_nic_id: str
+    state: str
+    vm_account_id: str
+    vm_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class LinkNicLight(BaseObject):
-    delete_on_vm_deletion: Optional[bool] = None
-    device_number: Optional[int] = None
-    link_nic_id: Optional[str] = None
-    state: Optional[str] = None
+    delete_on_vm_deletion: bool
+    device_number: int
+    link_nic_id: str
+    state: str
 
 
 @alias(to_camelcase)
 @dataclass
 class LinkNicToUpdate(BaseObject):
-    delete_on_vm_deletion: Optional[bool] = None
-    link_nic_id: Optional[str] = None
+    delete_on_vm_deletion: bool
+    link_nic_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class LinkPublicIp(BaseObject):
-    link_public_ip_id: Optional[str] = None
-    public_dns_name: Optional[str] = None
-    public_ip: Optional[str] = None
-    public_ip_account_id: Optional[str] = None
-    public_ip_id: Optional[str] = None
+    link_public_ip_id: str
+    public_dns_name: str
+    public_ip: str
+    public_ip_account_id: str
+    public_ip_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class LinkPublicIpLightForVm(BaseObject):
-    public_dns_name: Optional[str] = None
-    public_ip: Optional[str] = None
-    public_ip_account_id: Optional[str] = None
+    public_dns_name: str
+    public_ip: str
+    public_ip_account_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class LinkRouteTable(BaseObject):
-    link_route_table_id: Optional[str] = None
-    main: Optional[bool] = None
-    route_table_id: Optional[str] = None
+    link_route_table_id: str
+    main: bool
+    route_table_id: str
     subnet_id: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class LinkedVolume(BaseObject):
-    delete_on_vm_deletion: Optional[bool] = None
-    device_name: Optional[str] = None
-    state: Optional[str] = None
-    vm_id: Optional[str] = None
-    volume_id: Optional[str] = None
+    delete_on_vm_deletion: bool
+    device_name: str
+    state: str
+    vm_id: str
+    volume_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class Listener(BaseObject):
-    backend_port: Optional[int] = None
-    backend_protocol: Optional[str] = None
-    load_balancer_port: Optional[int] = None
-    load_balancer_protocol: Optional[str] = None
-    policy_names: Optional[list[str]] = None
-    server_certificate_id: Optional[str] = None
+    backend_port: int
+    backend_protocol: str
+    load_balancer_port: int
+    load_balancer_protocol: str
+    policy_names: list[str]
+    server_certificate_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class ListenerForCreation(BaseObject):
     backend_port: int
+    backend_protocol: str
     load_balancer_port: int
     load_balancer_protocol: str
-    backend_protocol: Optional[str] = None
-    server_certificate_id: Optional[str] = None
+    server_certificate_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class ListenerRule(BaseObject):
-    action: Optional[str] = None
-    host_name_pattern: Optional[str] = None
-    listener_id: Optional[int] = None
-    listener_rule_id: Optional[int] = None
-    listener_rule_name: Optional[str] = None
-    path_pattern: Optional[str] = None
-    priority: Optional[int] = None
-    vm_ids: Optional[list[str]] = None
+    action: str
+    host_name_pattern: str
+    listener_id: int
+    listener_rule_id: int
+    listener_rule_name: str
+    path_pattern: str
+    priority: int
+    vm_ids: list[str]
 
 
 @alias(to_camelcase)
 @dataclass
 class ListenerRuleForCreation(BaseObject):
+    action: str
+    host_name_pattern: str
     listener_rule_name: str
+    path_pattern: str
     priority: int
-    action: Optional[str] = None
-    host_name_pattern: Optional[str] = None
-    path_pattern: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class LoadBalancer(BaseObject):
-    access_log: Optional[AccessLog] = None
-    application_sticky_cookie_policies: Optional[
-        list[ApplicationStickyCookiePolicy]
-    ] = None
-    backend_ips: Optional[list[str]] = None
-    backend_vm_ids: Optional[list[str]] = None
-    dns_name: Optional[str] = None
-    health_check: Optional[HealthCheck] = None
-    listeners: Optional[list[Listener]] = None
-    load_balancer_name: Optional[str] = None
-    load_balancer_sticky_cookie_policies: Optional[
-        list[LoadBalancerStickyCookiePolicy]
-    ] = None
-    load_balancer_type: Optional[str] = None
-    net_id: Optional[str] = None
-    public_ip: Optional[str] = None
-    security_groups: Optional[list[str]] = None
-    source_security_group: Optional[SourceSecurityGroup] = None
-    subnets: Optional[list[str]] = None
-    subregion_names: Optional[list[str]] = None
-    tags: Optional[list[ResourceTag]] = None
+    access_log: AccessLog
+    application_sticky_cookie_policies: list[ApplicationStickyCookiePolicy]
+    backend_ips: list[str]
+    backend_vm_ids: list[str]
+    dns_name: str
+    health_check: HealthCheck
+    listeners: list[Listener]
+    load_balancer_name: str
+    load_balancer_sticky_cookie_policies: list[LoadBalancerStickyCookiePolicy]
+    load_balancer_type: str
+    net_id: str
+    public_ip: str
+    security_groups: list[str]
+    source_security_group: SourceSecurityGroup
+    subnets: list[str]
+    subregion_names: list[str]
+    tags: list[ResourceTag]
 
 
 @alias(to_camelcase)
@@ -974,168 +970,168 @@ class LoadBalancerLight(BaseObject):
 @alias(to_camelcase)
 @dataclass
 class LoadBalancerStickyCookiePolicy(BaseObject):
-    cookie_expiration_period: Optional[int] = None
-    policy_name: Optional[str] = None
+    cookie_expiration_period: int
+    policy_name: str
 
 
 @alias(to_camelcase)
 @dataclass
 class LoadBalancerTag(BaseObject):
-    key: Optional[str] = None
-    load_balancer_name: Optional[str] = None
-    value: Optional[str] = None
+    key: str
+    load_balancer_name: str
+    value: str
 
 
 @alias(to_camelcase)
 @dataclass
 class Location(BaseObject):
-    code: Optional[str] = None
-    name: Optional[str] = None
+    code: str
+    name: str
 
 
 @alias(to_camelcase)
 @dataclass
 class Log(BaseObject):
-    account_id: Optional[str] = None
-    call_duration: Optional[int] = None
-    query_access_key: Optional[str] = None
-    query_api_name: Optional[str] = None
-    query_api_version: Optional[str] = None
-    query_call_name: Optional[str] = None
-    query_date: Optional[str] = None
-    query_header_raw: Optional[str] = None
-    query_header_size: Optional[int] = None
-    query_ip_address: Optional[str] = None
-    query_payload_raw: Optional[str] = None
-    query_payload_size: Optional[int] = None
-    query_user_agent: Optional[str] = None
-    request_id: Optional[str] = None
-    response_size: Optional[int] = None
-    response_status_code: Optional[int] = None
+    account_id: str
+    call_duration: int
+    query_access_key: str
+    query_api_name: str
+    query_api_version: str
+    query_call_name: str
+    query_date: str
+    query_header_raw: str
+    query_header_size: int
+    query_ip_address: str
+    query_payload_raw: str
+    query_payload_size: int
+    query_user_agent: str
+    request_id: str
+    response_size: int
+    response_status_code: int
 
 
 @alias(to_camelcase)
 @dataclass
 class MaintenanceEvent(BaseObject):
-    code: Optional[str] = None
-    description: Optional[str] = None
-    not_after: Optional[str] = None
-    not_before: Optional[str] = None
+    code: str
+    description: str
+    not_after: str
+    not_before: str
 
 
 @alias(to_camelcase)
 @dataclass
 class NatService(BaseObject):
-    nat_service_id: Optional[str] = None
-    net_id: Optional[str] = None
-    public_ips: Optional[list[PublicIpLight]] = None
-    state: Optional[str] = None
-    subnet_id: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
+    nat_service_id: str
+    net_id: str
+    public_ips: list[PublicIpLight]
+    state: str
+    subnet_id: str
+    tags: list[ResourceTag]
 
 
 @alias(to_camelcase)
 @dataclass
 class Net(BaseObject):
-    dhcp_options_set_id: Optional[str] = None
-    ip_range: Optional[str] = None
-    net_id: Optional[str] = None
-    state: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
-    tenancy: Optional[str] = None
+    dhcp_options_set_id: str
+    ip_range: str
+    net_id: str
+    state: str
+    tags: list[ResourceTag]
+    tenancy: str
 
 
 @alias(to_camelcase)
 @dataclass
 class NetAccessPoint(BaseObject):
-    net_access_point_id: Optional[str] = None
-    net_id: Optional[str] = None
-    route_table_ids: Optional[list[str]] = None
-    service_name: Optional[str] = None
-    state: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
+    net_access_point_id: str
+    net_id: str
+    route_table_ids: list[str]
+    service_name: str
+    state: str
+    tags: list[ResourceTag]
 
 
 @alias(to_camelcase)
 @dataclass
 class NetPeering(BaseObject):
-    accepter_net: Optional[AccepterNet] = None
-    net_peering_id: Optional[str] = None
-    source_net: Optional[SourceNet] = None
-    state: Optional[NetPeeringState] = None
-    tags: Optional[list[ResourceTag]] = None
+    accepter_net: AccepterNet
+    net_peering_id: str
+    source_net: SourceNet
+    state: NetPeeringState
+    tags: list[ResourceTag]
 
 
 @alias(to_camelcase)
 @dataclass
 class NetPeeringState(BaseObject):
-    message: Optional[str] = None
-    name: Optional[str] = None
+    message: str
+    name: str
 
 
 @alias(to_camelcase)
 @dataclass
 class NetToVirtualGatewayLink(BaseObject):
-    net_id: Optional[str] = None
-    state: Optional[str] = None
+    net_id: str
+    state: str
 
 
 @alias(to_camelcase)
 @dataclass
 class Nic(BaseObject):
-    account_id: Optional[str] = None
-    description: Optional[str] = None
-    is_source_dest_checked: Optional[bool] = None
-    link_nic: Optional[LinkNic] = None
+    account_id: str
+    description: str
+    is_source_dest_checked: bool
+    link_nic: LinkNic
+    mac_address: str
+    net_id: str
+    nic_id: str
+    private_dns_name: str
+    private_ips: list[PrivateIp]
+    security_groups: list[SecurityGroupLight]
+    state: str
+    subnet_id: str
+    subregion_name: str
+    tags: list[ResourceTag]
     link_public_ip: Optional[LinkPublicIp] = None
-    mac_address: Optional[str] = None
-    net_id: Optional[str] = None
-    nic_id: Optional[str] = None
-    private_dns_name: Optional[str] = None
-    private_ips: Optional[list[PrivateIp]] = None
-    security_groups: Optional[list[SecurityGroupLight]] = None
-    state: Optional[str] = None
-    subnet_id: Optional[str] = None
-    subregion_name: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class NicForVmCreation(BaseObject):
-    delete_on_vm_deletion: Optional[bool] = None
-    description: Optional[str] = None
-    device_number: Optional[int] = None
-    nic_id: Optional[str] = None
-    private_ips: Optional[list[PrivateIpLight]] = None
-    secondary_private_ip_count: Optional[int] = None
-    security_group_ids: Optional[list[str]] = None
-    subnet_id: Optional[str] = None
+    delete_on_vm_deletion: bool
+    description: str
+    device_number: int
+    nic_id: str
+    private_ips: list[PrivateIpLight]
+    secondary_private_ip_count: int
+    security_group_ids: list[str]
+    subnet_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class NicLight(BaseObject):
-    account_id: Optional[str] = None
-    description: Optional[str] = None
-    is_source_dest_checked: Optional[bool] = None
-    link_nic: Optional[LinkNicLight] = None
-    link_public_ip: Optional[LinkPublicIpLightForVm] = None
-    mac_address: Optional[str] = None
-    net_id: Optional[str] = None
-    nic_id: Optional[str] = None
-    private_dns_name: Optional[str] = None
-    private_ips: Optional[list[PrivateIpLightForVm]] = None
-    security_groups: Optional[list[SecurityGroupLight]] = None
-    state: Optional[str] = None
-    subnet_id: Optional[str] = None
+    account_id: str
+    description: str
+    is_source_dest_checked: bool
+    link_nic: LinkNicLight
+    link_public_ip: LinkPublicIpLightForVm
+    mac_address: str
+    net_id: str
+    nic_id: str
+    private_dns_name: str
+    private_ips: list[PrivateIpLightForVm]
+    security_groups: list[SecurityGroupLight]
+    state: str
+    subnet_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class OsuApiKey(BaseObject):
-    api_key_id: Optional[str] = None
-    secret_key: Optional[str] = None
+    api_key_id: str
+    secret_key: str
 
 
 @alias(to_camelcase)
@@ -1143,8 +1139,8 @@ class OsuApiKey(BaseObject):
 class OsuExportImageExportTask(BaseObject):
     disk_image_format: str
     osu_bucket: str
-    osu_manifest_url: Optional[str] = None
-    osu_prefix: Optional[str] = None
+    osu_manifest_url: str
+    osu_prefix: str
 
 
 @alias(to_camelcase)
@@ -1152,147 +1148,147 @@ class OsuExportImageExportTask(BaseObject):
 class OsuExportSnapshotExportTask(BaseObject):
     disk_image_format: str
     osu_bucket: str
-    osu_prefix: Optional[str] = None
+    osu_prefix: str
 
 
 @alias(to_camelcase)
 @dataclass
 class OsuExportToCreate(BaseObject):
     disk_image_format: str
+    osu_api_key: OsuApiKey
     osu_bucket: str
-    osu_api_key: Optional[OsuApiKey] = None
-    osu_manifest_url: Optional[str] = None
-    osu_prefix: Optional[str] = None
+    osu_manifest_url: str
+    osu_prefix: str
 
 
 @alias(to_camelcase)
 @dataclass
 class PermissionsOnResource(BaseObject):
-    account_ids: Optional[list[str]] = None
-    global_permission: Optional[bool] = None
+    account_ids: list[str]
+    global_permission: bool
 
 
 @alias(to_camelcase)
 @dataclass
 class PermissionsOnResourceCreation(BaseObject):
-    additions: Optional[PermissionsOnResource] = None
-    removals: Optional[PermissionsOnResource] = None
+    additions: PermissionsOnResource
+    removals: PermissionsOnResource
 
 
 @alias(to_camelcase)
 @dataclass
 class Phase1Options(BaseObject):
-    dpd_timeout_action: Optional[str] = None
-    dpd_timeout_seconds: Optional[int] = None
-    ike_versions: Optional[list[str]] = None
-    phase1_dh_group_numbers: Optional[list[int]] = None
-    phase1_encryption_algorithms: Optional[list[str]] = None
-    phase1_integrity_algorithms: Optional[list[str]] = None
-    phase1_lifetime_seconds: Optional[int] = None
-    replay_window_size: Optional[int] = None
-    startup_action: Optional[str] = None
+    dpd_timeout_action: str
+    dpd_timeout_seconds: int
+    ike_versions: list[str]
+    phase1_dh_group_numbers: list[int]
+    phase1_encryption_algorithms: list[str]
+    phase1_integrity_algorithms: list[str]
+    phase1_lifetime_seconds: int
+    replay_window_size: int
+    startup_action: str
 
 
 @alias(to_camelcase)
 @dataclass
 class Phase2Options(BaseObject):
-    phase2_dh_group_numbers: Optional[list[int]] = None
-    phase2_encryption_algorithms: Optional[list[str]] = None
-    phase2_integrity_algorithms: Optional[list[str]] = None
-    phase2_lifetime_seconds: Optional[int] = None
-    pre_shared_key: Optional[str] = None
+    phase2_dh_group_numbers: list[int]
+    phase2_encryption_algorithms: list[str]
+    phase2_integrity_algorithms: list[str]
+    phase2_lifetime_seconds: int
+    pre_shared_key: str
 
 
 @alias(to_camelcase)
 @dataclass
 class Placement(BaseObject):
-    subregion_name: Optional[str] = None
-    tenancy: Optional[str] = None
+    subregion_name: str
+    tenancy: str
 
 
 @alias(to_camelcase)
 @dataclass
 class PrivateIp(BaseObject):
-    is_primary: Optional[bool] = None
+    is_primary: bool
+    private_dns_name: str
+    private_ip: str
     link_public_ip: Optional[LinkPublicIp] = None
-    private_dns_name: Optional[str] = None
-    private_ip: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class PrivateIpLight(BaseObject):
-    is_primary: Optional[bool] = None
-    private_ip: Optional[str] = None
+    is_primary: bool
+    private_ip: str
 
 
 @alias(to_camelcase)
 @dataclass
 class PrivateIpLightForVm(BaseObject):
-    is_primary: Optional[bool] = None
-    link_public_ip: Optional[LinkPublicIpLightForVm] = None
-    private_dns_name: Optional[str] = None
-    private_ip: Optional[str] = None
+    is_primary: bool
+    link_public_ip: LinkPublicIpLightForVm
+    private_dns_name: str
+    private_ip: str
 
 
 @alias(to_camelcase)
 @dataclass
 class ProductType(BaseObject):
-    description: Optional[str] = None
-    product_type_id: Optional[str] = None
+    description: str
+    product_type_id: str
     vendor: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class PublicIp(BaseObject):
+    public_ip: str
+    public_ip_id: str
+    tags: list[ResourceTag]
     link_public_ip_id: Optional[str] = None
     nic_account_id: Optional[str] = None
     nic_id: Optional[str] = None
     private_ip: Optional[str] = None
-    public_ip: Optional[str] = None
-    public_ip_id: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
     vm_id: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class PublicIpLight(BaseObject):
-    public_ip: Optional[str] = None
-    public_ip_id: Optional[str] = None
+    public_ip: str
+    public_ip_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class Quota(BaseObject):
-    account_id: Optional[str] = None
-    description: Optional[str] = None
-    max_value: Optional[int] = None
-    name: Optional[str] = None
-    quota_collection: Optional[str] = None
-    short_description: Optional[str] = None
-    used_value: Optional[int] = None
+    account_id: str
+    description: str
+    max_value: int
+    name: str
+    quota_collection: str
+    short_description: str
+    used_value: int
 
 
 @alias(to_camelcase)
 @dataclass
 class QuotaTypes(BaseObject):
-    quota_type: Optional[str] = None
-    quotas: Optional[list[Quota]] = None
+    quota_type: str
+    quotas: list[Quota]
 
 
 @alias(to_camelcase)
 @dataclass
 class Region(BaseObject):
-    endpoint: Optional[str] = None
-    region_name: Optional[str] = None
+    endpoint: str
+    region_name: str
 
 
 @alias(to_camelcase)
 @dataclass
 class ResourceLoadBalancerTag(BaseObject):
-    key: Optional[str] = None
+    key: str
 
 
 @alias(to_camelcase)
@@ -1305,21 +1301,21 @@ class ResourceTag(BaseObject):
 @alias(to_camelcase)
 @dataclass
 class ResponseContext(BaseObject):
-    request_id: Optional[str] = None
+    request_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class Route(BaseObject):
-    creation_method: Optional[str] = None
-    destination_ip_range: Optional[str] = None
+    creation_method: str
+    destination_ip_range: str
+    state: str
     destination_service_id: Optional[str] = None
     gateway_id: Optional[str] = None
     nat_service_id: Optional[str] = None
     net_access_point_id: Optional[str] = None
     net_peering_id: Optional[str] = None
     nic_id: Optional[str] = None
-    state: Optional[str] = None
     vm_account_id: Optional[str] = None
     vm_id: Optional[str] = None
 
@@ -1327,128 +1323,126 @@ class Route(BaseObject):
 @alias(to_camelcase)
 @dataclass
 class RouteLight(BaseObject):
-    destination_ip_range: Optional[str] = None
-    route_type: Optional[str] = None
-    state: Optional[str] = None
+    destination_ip_range: str
+    route_type: str
+    state: str
 
 
 @alias(to_camelcase)
 @dataclass
 class RoutePropagatingVirtualGateway(BaseObject):
-    virtual_gateway_id: Optional[str] = None
+    virtual_gateway_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class RouteTable(BaseObject):
-    link_route_tables: Optional[list[LinkRouteTable]] = None
-    net_id: Optional[str] = None
-    route_propagating_virtual_gateways: Optional[
-        list[RoutePropagatingVirtualGateway]
-    ] = None
-    route_table_id: Optional[str] = None
-    routes: Optional[list[Route]] = None
-    tags: Optional[list[ResourceTag]] = None
+    link_route_tables: list[LinkRouteTable]
+    net_id: str
+    route_propagating_virtual_gateways: list[RoutePropagatingVirtualGateway]
+    route_table_id: str
+    routes: list[Route]
+    tags: list[ResourceTag]
 
 
 @alias(to_camelcase)
 @dataclass
 class SecurityGroup(BaseObject):
-    account_id: Optional[str] = None
-    description: Optional[str] = None
-    inbound_rules: Optional[list[SecurityGroupRule]] = None
+    account_id: str
+    description: str
+    inbound_rules: list[SecurityGroupRule]
+    outbound_rules: list[SecurityGroupRule]
+    security_group_id: str
+    security_group_name: str
+    tags: list[ResourceTag]
     net_id: Optional[str] = None
-    outbound_rules: Optional[list[SecurityGroupRule]] = None
-    security_group_id: Optional[str] = None
-    security_group_name: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class SecurityGroupLight(BaseObject):
-    security_group_id: Optional[str] = None
-    security_group_name: Optional[str] = None
+    security_group_id: str
+    security_group_name: str
 
 
 @alias(to_camelcase)
 @dataclass
 class SecurityGroupRule(BaseObject):
-    from_port_range: Optional[int] = None
-    ip_protocol: Optional[str] = None
+    from_port_range: int
+    ip_protocol: str
+    to_port_range: int
     ip_ranges: Optional[list[str]] = None
     security_groups_members: Optional[list[SecurityGroupsMember]] = None
     service_ids: Optional[list[str]] = None
-    to_port_range: Optional[int] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class SecurityGroupsMember(BaseObject):
-    account_id: Optional[str] = None
-    security_group_id: Optional[str] = None
-    security_group_name: Optional[str] = None
+    account_id: str
+    security_group_id: str
+    security_group_name: str
 
 
 @alias(to_camelcase)
 @dataclass
 class ServerCertificate(BaseObject):
-    expiration_date: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    path: Optional[str] = None
-    upload_date: Optional[str] = None
+    expiration_date: str
+    id: str
+    name: str
+    path: str
+    upload_date: str
 
 
 @alias(to_camelcase)
 @dataclass
 class Service(BaseObject):
-    ip_ranges: Optional[list[str]] = None
-    service_id: Optional[str] = None
-    service_name: Optional[str] = None
+    ip_ranges: list[str]
+    service_id: str
+    service_name: str
 
 
 @alias(to_camelcase)
 @dataclass
 class Snapshot(BaseObject):
+    account_id: str
+    creation_date: str
+    description: str
+    permissions_to_create_volume: PermissionsOnResource
+    progress: int
+    snapshot_id: str
+    state: str
+    tags: list[ResourceTag]
+    volume_size: int
     account_alias: Optional[str] = None
-    account_id: Optional[str] = None
-    creation_date: Optional[str] = None
-    description: Optional[str] = None
-    permissions_to_create_volume: Optional[PermissionsOnResource] = None
-    progress: Optional[int] = None
-    snapshot_id: Optional[str] = None
-    state: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
     volume_id: Optional[str] = None
-    volume_size: Optional[int] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class SnapshotExportTask(BaseObject):
-    comment: Optional[str] = None
-    osu_export: Optional[OsuExportSnapshotExportTask] = None
-    progress: Optional[int] = None
-    snapshot_id: Optional[str] = None
-    state: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
-    task_id: Optional[str] = None
+    comment: str
+    osu_export: OsuExportSnapshotExportTask
+    progress: int
+    snapshot_id: str
+    state: str
+    tags: list[ResourceTag]
+    task_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class SourceNet(BaseObject):
-    account_id: Optional[str] = None
-    ip_range: Optional[str] = None
-    net_id: Optional[str] = None
+    account_id: str
+    ip_range: str
+    net_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class SourceSecurityGroup(BaseObject):
-    security_group_account_id: Optional[str] = None
-    security_group_name: Optional[str] = None
+    security_group_account_id: str
+    security_group_name: str
 
 
 @alias(to_camelcase)
@@ -1461,175 +1455,175 @@ class StateComment(BaseObject):
 @alias(to_camelcase)
 @dataclass
 class Subnet(BaseObject):
-    available_ips_count: Optional[int] = None
-    ip_range: Optional[str] = None
-    map_public_ip_on_launch: Optional[bool] = None
-    net_id: Optional[str] = None
-    state: Optional[str] = None
-    subnet_id: Optional[str] = None
-    subregion_name: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
+    available_ips_count: int
+    ip_range: str
+    map_public_ip_on_launch: bool
+    net_id: str
+    state: str
+    subnet_id: str
+    subregion_name: str
+    tags: list[ResourceTag]
 
 
 @alias(to_camelcase)
 @dataclass
 class Subregion(BaseObject):
-    region_name: Optional[str] = None
-    state: Optional[str] = None
-    subregion_name: Optional[str] = None
+    region_name: str
+    state: str
+    subregion_name: str
 
 
 @alias(to_camelcase)
 @dataclass
 class Tag(BaseObject):
-    key: Optional[str] = None
-    resource_id: Optional[str] = None
-    resource_type: Optional[str] = None
-    value: Optional[str] = None
+    key: str
+    resource_id: str
+    resource_type: str
+    value: str
 
 
 @alias(to_camelcase)
 @dataclass
 class VgwTelemetry(BaseObject):
-    accepted_route_count: Optional[int] = None
-    last_state_change_date: Optional[str] = None
-    outside_ip_address: Optional[str] = None
-    state: Optional[str] = None
-    state_description: Optional[str] = None
+    accepted_route_count: int
+    last_state_change_date: str
+    outside_ip_address: str
+    state: str
+    state_description: str
 
 
 @alias(to_camelcase)
 @dataclass
 class VirtualGateway(BaseObject):
-    connection_type: Optional[str] = None
-    net_to_virtual_gateway_links: Optional[list[NetToVirtualGatewayLink]] = None
-    state: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
-    virtual_gateway_id: Optional[str] = None
+    connection_type: str
+    net_to_virtual_gateway_links: list[NetToVirtualGatewayLink]
+    state: str
+    tags: list[ResourceTag]
+    virtual_gateway_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class Vm(BaseObject, VmMixin):
-    architecture: Optional[str] = None
-    block_device_mappings: Optional[list[BlockDeviceMappingCreated]] = None
-    bsu_optimized: Optional[bool] = None
+    architecture: str
+    block_device_mappings: list[BlockDeviceMappingCreated]
+    bsu_optimized: bool
+    creation_date: str
+    deletion_protection: bool
+    hypervisor: str
+    image_id: str
+    is_source_dest_checked: bool
+    keypair_name: str
+    launch_number: int
+    performance: str
+    placement: Placement
+    private_dns_name: str
+    private_ip: str
+    product_codes: list[str]
+    reservation_id: str
+    root_device_name: str
+    root_device_type: str
+    security_groups: list[SecurityGroupLight]
+    state: str
+    state_reason: str
+    tags: list[ResourceTag]
+    user_data: str
+    vm_id: str
+    vm_initiated_shutdown_behavior: str
+    vm_type: str
     client_token: Optional[str] = None
-    creation_date: Optional[str] = None
-    deletion_protection: Optional[bool] = None
-    hypervisor: Optional[str] = None
-    image_id: Optional[str] = None
-    is_source_dest_checked: Optional[bool] = None
-    keypair_name: Optional[str] = None
-    launch_number: Optional[int] = None
     net_id: Optional[str] = None
     nics: Optional[list[NicLight]] = None
     os_family: Optional[str] = None
-    performance: Optional[str] = None
-    placement: Optional[Placement] = None
-    private_dns_name: Optional[str] = None
-    private_ip: Optional[str] = None
-    product_codes: Optional[list[str]] = None
     public_dns_name: Optional[str] = None
     public_ip: Optional[str] = None
-    reservation_id: Optional[str] = None
-    root_device_name: Optional[str] = None
-    root_device_type: Optional[str] = None
-    security_groups: Optional[list[SecurityGroupLight]] = None
-    state: Optional[str] = None
-    state_reason: Optional[str] = None
     subnet_id: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
-    user_data: Optional[str] = None
-    vm_id: Optional[str] = None
-    vm_initiated_shutdown_behavior: Optional[str] = None
-    vm_type: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class VmState(BaseObject):
-    current_state: Optional[str] = None
-    previous_state: Optional[str] = None
-    vm_id: Optional[str] = None
+    current_state: str
+    previous_state: str
+    vm_id: str
 
 
 @alias(to_camelcase)
 @dataclass
 class VmStates(BaseObject):
-    maintenance_events: Optional[list[MaintenanceEvent]] = None
-    subregion_name: Optional[str] = None
-    vm_id: Optional[str] = None
-    vm_state: Optional[str] = None
+    maintenance_events: list[MaintenanceEvent]
+    subregion_name: str
+    vm_id: str
+    vm_state: str
 
 
 @alias(to_camelcase)
 @dataclass
 class VmType(BaseObject):
-    bsu_optimized: Optional[bool] = None
-    max_private_ips: Optional[int] = None
-    memory_size: Optional[float] = None
-    vcore_count: Optional[int] = None
-    vm_type_name: Optional[str] = None
-    volume_count: Optional[int] = None
+    bsu_optimized: bool
+    max_private_ips: int
+    memory_size: float
+    vcore_count: int
+    vm_type_name: str
+    volume_count: int
     volume_size: Optional[int] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class Volume(BaseObject):
-    creation_date: Optional[str] = None
+    creation_date: str
+    linked_volumes: list[LinkedVolume]
+    size: int
+    state: str
+    subregion_name: str
+    tags: list[ResourceTag]
+    volume_id: str
+    volume_type: str
     iops: Optional[int] = None
-    linked_volumes: Optional[list[LinkedVolume]] = None
-    size: Optional[int] = None
     snapshot_id: Optional[str] = None
-    state: Optional[str] = None
-    subregion_name: Optional[str] = None
-    tags: Optional[list[ResourceTag]] = None
-    volume_id: Optional[str] = None
-    volume_type: Optional[str] = None
 
 
 @alias(to_camelcase)
 @dataclass
 class VpnConnection(BaseObject):
-    client_gateway_configuration: Optional[str] = None
-    client_gateway_id: Optional[str] = None
-    connection_type: Optional[str] = None
-    routes: Optional[list[RouteLight]] = None
-    state: Optional[str] = None
-    static_routes_only: Optional[bool] = None
-    tags: Optional[list[ResourceTag]] = None
-    vgw_telemetries: Optional[list[VgwTelemetry]] = None
-    virtual_gateway_id: Optional[str] = None
-    vpn_connection_id: Optional[str] = None
-    vpn_options: Optional[VpnOptions] = None
+    client_gateway_configuration: str
+    client_gateway_id: str
+    connection_type: str
+    routes: list[RouteLight]
+    state: str
+    static_routes_only: bool
+    tags: list[ResourceTag]
+    vgw_telemetries: list[VgwTelemetry]
+    virtual_gateway_id: str
+    vpn_connection_id: str
+    vpn_options: VpnOptions
 
 
 @alias(to_camelcase)
 @dataclass
 class VpnOptions(BaseObject):
-    phase1_options: Optional[Phase1Options] = None
-    phase2_options: Optional[Phase2Options] = None
-    tunnel_inside_ip_range: Optional[str] = None
+    phase1_options: Phase1Options
+    phase2_options: Phase2Options
+    tunnel_inside_ip_range: str
 
 
 @alias(to_camelcase)
 @dataclass
 class With(BaseObject):
-    account_id: Optional[bool] = None
-    call_duration: Optional[bool] = None
-    query_access_key: Optional[bool] = None
-    query_api_name: Optional[bool] = None
-    query_api_version: Optional[bool] = None
-    query_call_name: Optional[bool] = None
-    query_date: Optional[bool] = None
-    query_header_raw: Optional[bool] = None
-    query_header_size: Optional[bool] = None
-    query_ip_address: Optional[bool] = None
-    query_payload_raw: Optional[bool] = None
-    query_payload_size: Optional[bool] = None
-    query_user_agent: Optional[bool] = None
-    request_id: Optional[bool] = None
-    response_size: Optional[bool] = None
-    response_status_code: Optional[bool] = None
+    account_id: bool
+    call_duration: bool
+    query_access_key: bool
+    query_api_name: bool
+    query_api_version: bool
+    query_call_name: bool
+    query_date: bool
+    query_header_raw: bool
+    query_header_size: bool
+    query_ip_address: bool
+    query_payload_raw: bool
+    query_payload_size: bool
+    query_user_agent: bool
+    request_id: bool
+    response_size: bool
+    response_status_code: bool
