@@ -1116,7 +1116,6 @@ class NicLight(BaseObject):
     description: str
     is_source_dest_checked: bool
     link_nic: LinkNicLight
-    link_public_ip: LinkPublicIpLightForVm
     mac_address: str
     net_id: str
     nic_id: str
@@ -1125,6 +1124,7 @@ class NicLight(BaseObject):
     security_groups: list[SecurityGroupLight]
     state: str
     subnet_id: str
+    link_public_ip: Optional[LinkPublicIpLightForVm] = None
 
 
 @alias(to_camelcase)
@@ -1226,9 +1226,9 @@ class PrivateIpLight(BaseObject):
 @dataclass
 class PrivateIpLightForVm(BaseObject):
     is_primary: bool
-    link_public_ip: LinkPublicIpLightForVm
     private_dns_name: str
     private_ip: str
+    link_public_ip: Optional[LinkPublicIpLightForVm] = None
 
 
 @alias(to_camelcase)
