@@ -5,6 +5,7 @@ setup(
     version="0.6",
     packages=["botosc", "botosc_gen"],
     url="",
+    entry_points={"console_scripts": ["botosc-gen = botosc_gen.main:main"]},
     license="MIT",
     author="Aubustou",
     author_email="survivalfr@yahoo.fr",
