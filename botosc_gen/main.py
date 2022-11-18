@@ -424,6 +424,8 @@ def to_camelcase(name: str) -> str:
 
 class OSCCall_(OSCCall):
     def make_request(self, *args, **kwargs) -> dict:
+        self.authentication_method = None
+
         throttled = True
         while throttled:
             try:
