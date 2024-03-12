@@ -1515,6 +1515,7 @@ class Vm(BaseObject, VmMixin):
     is_source_dest_checked: bool
     keypair_name: str
     launch_number: int
+    nested_virtualization: bool
     performance: str
     placement: Placement
     private_dns_name: str
